@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guide Utilisateur – Pharma Gestion (Anapharmo)</title>
+<meta name="description" content="Documentation détaillée et moderne pour l'application React Pharma Gestion / Anapharmo." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ctext y='.9em' font-size='96'%3E⚕️%3C/text%3E%3C/svg%3E">
+<style>
+  /* ======================= THEME PHARMACIE PROFESSIONNEL ======================= */
+  :root{
+    --bg:#f8fafb; 
+    --surface:#ffffff; 
+    --text:#1a2332; 
+    --muted:#5a6c7d;
+    --primary:#00A651; /* Vert pharmacie */
+    --primary-dark:#008542;
+    --accent:#0066CC; /* Bleu médical */
+    --accent-light:#4d94ff;
+    --success:#10b981; 
+    --warn:#f59e0b; 
+    --danger:#ef4444;
+    --border:rgba(0,166,81,.12); 
+    --shadow:0 2px 12px rgba(0,166,81,.08);
+    --shadow-lg:0 8px 30px rgba(0,166,81,.12);
+    --radius:12px; 
+    --radius-sm:8px; 
+  }
+  
+  [data-theme="dark"]{
+    --bg:#0d1117; 
+    --surface:#161b22; 
+    --text:#e6edf3; 
+    --muted:#8b949e;
+    --primary:#10b981; 
+    --primary-dark:#059669;
+    --accent:#4d94ff;
+    --border:rgba(16,185,129,.15); 
+    --shadow:0 2px 12px rgba(0,0,0,.3);
+    --shadow-lg:0 8px 30px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0} 
+  html,body{height:100%}
+  body{
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color:var(--text); 
+    background:var(--bg);
+    line-height:1.6;
+  }
+
+  a{color:inherit; text-decoration:none} 
+  img{max-width:100%; height:auto}
+
+  /* ======================= LAYOUT RESPONSIVE ======================= */
+  .layout{
+    display:grid; 
+    grid-template-columns: 320px 1fr; 
+    gap:0; 
+    min-height:100vh;
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){ 
+    .layout{grid-template-columns: 280px 1fr} 
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){ 
+    .layout{grid-template-columns: 1fr} 
+  }
+
+  aside{
+    position:sticky; 
+    top:0; 
+    align-self:start; 
+    height:100vh; 
+    overflow:auto;
+    border-right:2px solid var(--border);
+    background:var(--surface);
+    box-shadow:var(--shadow-lg);
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){ 
+    aside{ 
+      font-size:14px;
+    } 
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){ 
+    aside{ 
+      position:static; 
+      height:auto;
+      border-right:none;
+      border-bottom:2px solid var(--border);
+    } 
+  }
+
+  /* Croix de pharmacie dans le logo */
+  .pharma-cross{
+    width:42px;
+    height:42px;
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+    position:relative;
+    border-radius:6px;
+    box-shadow:var(--shadow-lg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .pharma-cross::before,
+  .pharma-cross::after{
+    content:'';
+    position:absolute;
+    background:#fff;
+  }
+  .pharma-cross::before{
+    width:6px;
+    height:24px;
+  }
+  .pharma-cross::after{
+    width:24px;
+    height:6px;
+  }
+
+  .brand{
+    padding:28px 24px; 
+    display:flex; 
+    gap:16px; 
+    align-items:center;
+    border-bottom:2px solid var(--border); 
+    background:linear-gradient(135deg, rgba(0,166,81,.05), rgba(0,102,204,.03));
+  }
+  .brand h1{
+    margin:0; 
+    font-size:20px; 
+    font-weight:700; 
+    letter-spacing:.3px;
+    color:var(--primary-dark);
+  }
+  .brand small{
+    display:block; 
+    color:var(--muted); 
+    font-weight:500;
+    font-size:13px;
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .brand{
+      padding:20px 16px;
+      gap:12px;
+    }
+    .brand h1{
+      font-size:18px;
+    }
+    .brand small{
+      font-size:12px;
+    }
+  }
+
+  .tools{
+    display:flex; 
+    gap:10px; 
+    padding:20px 24px; 
+    border-bottom:1px solid var(--border); 
+    flex-wrap:wrap;
+    background:rgba(0,166,81,.02);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .tools{
+      padding:16px;
+      gap:8px;
+    }
+  }
+
+  .btn{
+    appearance:none; 
+    border:1.5px solid var(--border); 
+    background:var(--surface);
+    color:var(--text); 
+    padding:10px 16px; 
+    border-radius:var(--radius-sm); 
+    font-weight:600; 
+    font-size:14px;
+    cursor:pointer; 
+    transition:all .2s ease;
+    box-shadow:var(--shadow);
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--primary);
+  }
+  .btn:active{transform:translateY(0)}
+  .btn.primary{
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+    border:0; 
+    color:#fff;
+  }
+  .btn.accent{
+    background:linear-gradient(135deg, var(--accent), var(--accent-light)); 
+    border:0; 
+    color:#fff;
+  }
+  .btn.ghost{
+    background:transparent; 
+    box-shadow:none;
+    border:1px solid transparent;
+  }
+  .btn.ghost:hover{
+    background:rgba(0,166,81,.08);
+    border-color:var(--border);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .btn{
+      padding:8px 12px;
+      font-size:13px;
+    }
+  }
+
+  .search{
+    padding:20px 24px; 
+    border-bottom:1px solid var(--border);
+  }
+  .search input{
+    width:100%; 
+    padding:12px 16px; 
+    border-radius:var(--radius-sm); 
+    border:2px solid var(--border);
+    background:var(--surface); 
+    color:var(--text); 
+    font-weight:500;
+    font-size:14px;
+    transition:all .2s ease;
+  }
+  .search input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(0,166,81,.1);
+  }
+
+  nav.toc{padding:16px 12px 40px}
+  .toc .title{
+    margin:12px 12px 16px; 
+    color:var(--muted); 
+    font-weight:700; 
+    text-transform:uppercase; 
+    letter-spacing:.1em; 
+    font-size:11px;
+  }
+  .toc a{
+    display:flex; 
+    gap:12px; 
+    align-items:center; 
+    padding:12px 16px; 
+    margin:4px 8px; 
+    border-radius:var(--radius-sm);
+    color:var(--text); 
+    text-decoration:none; 
+    border:2px solid transparent; 
+    font-weight:600;
+    font-size:14px;
+    transition:all .2s ease;
+  }
+  .toc a small{
+    color:var(--muted); 
+    font-weight:500;
+    font-size:12px;
+  }
+  .toc a.active{
+    border-color:var(--primary); 
+    background:linear-gradient(135deg, rgba(0,166,81,.1), rgba(0,166,81,.05));
+    color:var(--primary-dark);
+  }
+  .toc a:hover{
+    border-color:var(--border); 
+    background:rgba(0,166,81,.05);
+  }
+  .toc .sep{
+    margin:20px 20px; 
+    height:2px; 
+    background:linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  main{min-width:0}
+
+  .hero{
+    padding:60px min(5vw,50px); 
+    border-bottom:2px solid var(--border);
+    background:
+      linear-gradient(135deg, rgba(0,166,81,.08), rgba(0,102,204,.05)),
+      var(--surface);
+    position:relative;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    width:400px;
+    height:400px;
+    background:radial-gradient(circle, rgba(0,166,81,.15), transparent);
+    pointer-events:none;
+  }
+  .hero h2{
+    margin:0 0 12px; 
+    font-size:38px; 
+    font-weight:700;
+    letter-spacing:.3px;
+    color:var(--primary-dark);
+    position:relative;
+  }
+  .hero p{
+    margin:0; 
+    color:var(--muted); 
+    font-weight:500; 
+    font-size:17px;
+    position:relative;
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){
+    .hero{
+      padding:50px 30px;
+    }
+    .hero h2{
+      font-size:32px;
+    }
+    .hero p{
+      font-size:16px;
+    }
+    .hero::before{
+      width:300px;
+      height:300px;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .hero{
+      padding:40px 20px;
+    }
+    .hero h2{
+      font-size:26px;
+    }
+    .hero p{
+      font-size:15px;
+    }
+    .hero::before{
+      width:200px;
+      height:200px;
+      opacity:0.5;
+    }
+  }
+
+  .container{
+    padding: min(5vw,50px); 
+    max-width:1200px; 
+    margin:0 auto;
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){
+    .container{
+      padding:30px;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .container{
+      padding:20px;
+    }
+  }
+
+  /* Raccourcis */
+  .shortcuts{
+    display:grid; 
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); 
+    gap:16px;
+    margin: 32px 0 40px;
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){ 
+    .shortcuts{
+      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap:12px;
+    } 
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){ 
+    .shortcuts{
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+      margin:24px 0 32px;
+    } 
+  }
+  
+  @media (max-width:480px){ 
+    .shortcuts{
+      grid-template-columns: 1fr;
+    } 
+  }
+
+  .shot{
+    display:flex; 
+    flex-direction:column; 
+    gap:10px; 
+    padding:20px; 
+    border-radius:var(--radius);
+    border:2px solid var(--border); 
+    background:var(--surface); 
+    box-shadow:var(--shadow);
+    text-decoration:none; 
+    color:var(--text); 
+    font-weight:600;
+    transition:all .25s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .shot::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg, var(--primary), var(--accent));
+    transform:scaleX(0);
+    transition:transform .25s ease;
+  }
+  .shot:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--primary);
+  }
+  .shot:hover::before{
+    transform:scaleX(1);
+  }
+  .shot .icon{font-size:28px}
+  .shot span:nth-child(2){
+    font-size:15px;
+    color:var(--primary-dark);
+  }
+  .shot .hint{
+    font-size:12px; 
+    color:var(--muted); 
+    font-weight:500;
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .shot{
+      padding:16px;
+      gap:8px;
+    }
+    .shot .icon{
+      font-size:24px;
+    }
+    .shot span:nth-child(2){
+      font-size:14px;
+    }
+    .shot .hint{
+      font-size:11px;
+    }
+  }
+
+  /* Sections */
+  section{
+    scroll-margin-top:120px; 
+    margin:36px 0; 
+    padding:32px;
+    border:2px solid var(--border); 
+    border-radius:var(--radius);
+    background:var(--surface); 
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  section::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:6px;
+    height:100%;
+    background:linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius:var(--radius) 0 0 var(--radius);
+  }
+  
+  /* Tablette */
+  @media (max-width:1100px){
+    section{
+      margin:28px 0;
+      padding:24px;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    section{
+      margin:20px 0;
+      padding:20px;
+      scroll-margin-top:80px;
+    }
+    section::before{
+      width:4px;
+    }
+  }
+  
+  h3{
+    margin:0 0 16px; 
+    font-size:26px; 
+    font-weight:700;
+    letter-spacing:.2px;
+    color:var(--primary-dark);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    h3{
+      font-size:22px;
+      margin:0 0 12px;
+    }
+  }
+  
+  .lead{
+    color:var(--muted); 
+    font-weight:500;
+    margin-bottom:20px;
+    line-height:1.7;
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .lead{
+      font-size:14px;
+      margin-bottom:16px;
+    }
+  }
+
+  .grid{display:grid; gap:20px}
+  .grid.cols-2{grid-template-columns:1fr 1fr}
+  .grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+  
+  /* Tablette */
+  @media (max-width:1100px){ 
+    .grid{gap:16px}
+    .grid.cols-3{grid-template-columns:1fr 1fr} 
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){ 
+    .grid{gap:12px}
+    .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} 
+  }
+
+  .card{
+    border:2px solid var(--border); 
+    border-radius:var(--radius-sm); 
+    padding:24px; 
+    background:linear-gradient(135deg, rgba(255,255,255,.8), rgba(0,166,81,.02));
+    transition:all .2s ease;
+  }
+  .card:hover{
+    box-shadow:var(--shadow-lg);
+    transform:translateY(-2px);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .card{
+      padding:16px;
+    }
+  }
+  
+  .kbd{
+    display:inline-block; 
+    padding:4px 10px; 
+    border-radius:6px; 
+    border:1.5px solid var(--border); 
+    background:rgba(0,166,81,.08); 
+    font-weight:700;
+    font-size:13px;
+    color:var(--primary-dark);
+  }
+  
+  .pill{
+    font-size:12px; 
+    padding:4px 12px; 
+    border-radius:999px; 
+    background:linear-gradient(135deg, rgba(0,166,81,.15), rgba(0,102,204,.1)); 
+    border:1.5px solid var(--border); 
+    font-weight:700;
+    color:var(--primary-dark);
+  }
+
+  ul.check{
+    list-style:none; 
+    padding-left:0;
+  }
+  ul.check li{
+    padding-left:35px; 
+    position:relative; 
+    margin:12px 0;
+    line-height:1.6;
+  }
+  ul.check li:before{
+    content:"✓"; 
+    position:absolute; 
+    left:0; 
+    color:var(--primary); 
+    font-weight:900;
+    font-size:18px;
+    width:24px;
+    height:24px;
+    background:rgba(0,166,81,.1);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    ul.check li{
+      padding-left:32px;
+      margin:10px 0;
+      font-size:14px;
+    }
+    ul.check li:before{
+      width:22px;
+      height:22px;
+      font-size:16px;
+    }
+  }
+
+  .steps{counter-reset:s}
+  .step{
+    counter-increment:s; 
+    padding-left:52px; 
+    position:relative; 
+    margin:16px 0;
+    line-height:1.6;
+  }
+  .step:before{
+    content:counter(s); 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    width:36px; 
+    height:36px; 
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800; 
+    background:linear-gradient(135deg, var(--primary), var(--accent)); 
+    color:#fff;
+    box-shadow:var(--shadow);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .step{
+      padding-left:44px;
+      margin:12px 0;
+      font-size:14px;
+    }
+    .step:before{
+      width:32px;
+      height:32px;
+      font-size:14px;
+    }
+  }
+
+  details{
+    border:2px solid var(--border); 
+    border-radius:var(--radius-sm); 
+    padding:16px 20px; 
+    background:rgba(0,166,81,.04);
+    margin:16px 0;
+  }
+  details summary{
+    cursor:pointer; 
+    font-weight:700;
+    color:var(--primary-dark);
+    font-size:15px;
+  }
+  details[open] summary{
+    margin-bottom:12px;
+  }
+
+  .notice{
+    border-left:5px solid var(--primary); 
+    padding:16px 20px; 
+    background:rgba(0,166,81,.08); 
+    border-radius:var(--radius-sm);
+    margin:20px 0;
+    font-weight:500;
+  }
+  .notice.warn{
+    border-left-color:var(--warn); 
+    background:rgba(245,158,11,.08);
+  }
+  .notice.danger{
+    border-left-color:var(--danger); 
+    background:rgba(239,68,68,.08);
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    .notice{
+      padding:12px 16px;
+      font-size:14px;
+      margin:16px 0;
+    }
+  }
+
+  footer{
+    padding:40px 24px; 
+    border-top:2px solid var(--border); 
+    color:var(--muted); 
+    text-align:center; 
+    background:linear-gradient(135deg, rgba(0,166,81,.03), rgba(0,102,204,.02));
+    font-weight:500;
+  }
+  
+  /* Mobile */
+  @media (max-width:768px){
+    footer{
+      padding:32px 20px;
+      font-size:14px;
+    }
+  }
+
+  /* Utils */
+  .hidden{display:none !important}
+  .srchHit{
+    background:rgba(245,158,11,.3); 
+    border-radius:4px; 
+    padding:2px 4px;
+    font-weight:600;
+  }
+
+  pre{
+    background:rgba(0,0,0,.05);
+    padding:16px;
+    border-radius:var(--radius-sm);
+    overflow-x:auto;
+    font-size:13px;
+    border:1px solid var(--border);
+  }
+
+  code{
+    font-family:'Courier New', monospace;
+    font-size:13px;
+  }
+
+  ol{
+    padding-left:0;
+    list-style:none;
+  }
+</style>
+</head>
+<body data-theme="light">
+  <div class="layout">
+
+    <!-- =================== SIDEBAR =================== -->
+    <aside>
+      <div class="brand">
+        <div class="pharma-cross"></div>
+        <div>
+          <h1>Pharma Gestion</h1>
+          <small>Guide Utilisateur Professionnel</small>
+        </div>
+      </div>
+
+      <div class="tools">
+        <button id="toggleTheme" class="btn">🌓 Mode</button>
+        <button id="printBtn" class="btn">🖨️ PDF</button>
+        <button id="expandAll" class="btn ghost">➕ Tout</button>
+        <button id="collapseAll" class="btn ghost">➖ Tout</button>
+      </div>
+
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="🔍 Rechercher..." />
+      </div>
+
+      <nav class="toc" id="toc">
+        <div class="title">Sommaire</div>
+        <a href="#intro" class="active">📌 <b>Introduction</b><small>&nbsp;Aperçu</small></a>
+        <a href="#demarrage">🚀 <b>Démarrage</b><small>&nbsp;Installation</small></a>
+        <a href="#roles">🧑‍⚕️ <b>Rôles & Accès</b><small>&nbsp;Permissions</small></a>
+        <div class="sep"></div>
+        <a href="#dashboard">📊 <b>Dashboard</b><small>&nbsp;Indicateurs</small></a>
+        <a href="#stock">📦 <b>Stock multi-lots</b><small>&nbsp;Gestion</small></a>
+        <a href="#ventes">💳 <b>Ventes</b><small>&nbsp;Encaissement</small></a>
+        <a href="#achats">🛒 <b>Achats</b><small>&nbsp;Réception</small></a>
+        <a href="#devis">📄 <b>Devis & Factures</b><small>&nbsp;Documents</small></a>
+        <a href="#paiements">💵 <b>Paiements</b><small>&nbsp;Suivi</small></a>
+        <a href="#backup">☁️ <b>Sauvegardes</b><small>&nbsp;Export/Import</small></a>
+        <a href="#invites">👥 <b>Utilisateurs</b><small>&nbsp;Invitations</small></a>
+        <a href="#params">⚙️ <b>Paramètres</b><small>&nbsp;Configuration</small></a>
+        <div class="sep"></div>
+        <a href="#faq">❓ <b>FAQ</b><small>&nbsp;Aide</small></a>
+        <a href="#support">🆘 <b>Support</b><small>&nbsp;Contact</small></a>
+      </nav>
+    </aside>
+
+    <!-- =================== CONTENT =================== -->
+    <main>
+      <header class="hero">
+        <h2>⚕️ Guide Professionnel Pharma Gestion</h2>
+        <p>Documentation complète pour la gestion moderne de votre officine pharmaceutique</p>
+
+        <!-- Barre de raccourcis -->
+        <div class="container" style="padding-left:0;padding-right:0;">
+          <div class="shortcuts">
+            <a class="shot" href="#demarrage">
+              <span class="icon">🚀</span>
+              <span>Démarrer</span>
+              <span class="hint">Installation rapide</span>
+            </a>
+            <a class="shot" href="#ventes">
+              <span class="icon">💳</span>
+              <span>Ventes</span>
+              <span class="hint">Encaissement</span>
+            </a>
+            <a class="shot" href="#achats">
+              <span class="icon">🛒</span>
+              <span>Achats</span>
+              <span class="hint">Commandes</span>
+            </a>
+            <a class="shot" href="#stock">
+              <span class="icon">📦</span>
+              <span>Stock</span>
+              <span class="hint">Inventaire</span>
+            </a>
+            <a class="shot" href="#devis">
+              <span class="icon">📄</span>
+              <span>Documents</span>
+              <span class="hint">Devis & Factures</span>
+            </a>
+            <a class="shot" href="#backup">
+              <span class="icon">☁️</span>
+              <span>Backup</span>
+              <span class="hint">Sécurité</span>
+            </a>
+            <a class="shot" href="#invites">
+              <span class="icon">👥</span>
+              <span>Équipe</span>
+              <span class="hint">Gestion</span>
+            </a>
+            <a class="shot" href="#params">
+              <span class="icon">⚙️</span>
+              <span>Config</span>
+              <span class="hint">Paramètres</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+
+        <section id="intro">
+          <h3>📌 Introduction</h3>
+          <p class="lead">Application web complète pour la gestion pharmaceutique : <b>stock multi-lots</b>, <b>ventes</b>, <b>achats</b>, <b>facturation</b>, <b>paiements</b> et <b>sauvegardes</b>. Développée avec <b>React</b> et <b>Firebase</b> pour une performance optimale.</p>
+          <ul class="check">
+            <li>Interface <b>professionnelle</b> et intuitive</li>
+            <li>Compatible ordinateur, tablette et mobile</li>
+            <li>Recherche instantanée et navigation fluide</li>
+            <li>Sécurité et sauvegarde automatique</li>
+          </ul>
+          <div class="notice">💡 <b>Astuce :</b> Utilisez <span class="kbd">Ctrl</span> + <span class="kbd">F</span> pour une recherche rapide, ou la barre de recherche intégrée.</div>
+        </section>
+
+        <section id="demarrage">
+          <h3>🚀 Démarrage rapide</h3>
+          <div class="grid cols-2">
+            <div class="card">
+              <div class="step"><b>Connexion</b> : Créez votre compte pharmacien (propriétaire)</div>
+              <div class="step"><b>Société</b> : Enregistrez votre officine pour obtenir un identifiant unique</div>
+              <div class="step"><b>Équipe</b> : Invitez vos collaborateurs avec leurs rôles respectifs</div>
+            </div>
+            <div class="card">
+              <details open>
+                <summary>🔧 Configuration Firebase</summary>
+                <p class="lead">Authentification sécurisée avec base de données Firestore et persistance locale automatique.</p>
+                <pre><code>// Stockage local avec support multi-onglets
+initializeFirestore(app, {
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager()
+  })
+});</code></pre>
+              </details>
+              <details>
+                <summary>💡 Navigateurs recommandés</summary>
+                <p>Chrome, Edge ou Firefox pour une expérience optimale. Autorisez la persistance locale si demandée.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="roles">
+          <h3>🧑‍⚕️ Rôles & Permissions</h3>
+          <p class="lead">Système de rôles flexible : <b>Propriétaire</b>, <b>Docteur</b>, <b>Vendeuse</b>. Permissions personnalisables selon les besoins de votre équipe.</p>
+          <div class="grid cols-2">
+            <div class="card">
+              <h4 style="margin-bottom:12px;color:var(--primary);">👑 Propriétaire</h4>
+              <span class="pill">Accès complet</span>
+              <p style="margin-top:12px;">Paramètres, sauvegardes, utilisateurs, ventes, achats et stock</p>
+            </div>
+            <div class="card">
+              <h4 style="margin-bottom:12px;color:var(--accent);">👩‍💼 Vendeuse</h4>
+              <span class="pill">Accès limité</span>
+              <p style="margin-top:12px;">Ventes et consultation du stock. Permissions supplémentaires configurables</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="dashboard">
+          <h3>📊 Tableau de bord</h3>
+          <p class="lead">Vue d'ensemble en temps réel : ventes du jour, achats, état de caisse, alertes stock et péremptions.</p>
+          <ul class="check">
+            <li>Indicateurs période (jour/semaine/mois)</li>
+            <li>Accès rapide à tous les modules</li>
+            <li>Alertes et notifications importantes</li>
+            <li>Statistiques de performance</li>
+          </ul>
+          <div class="notice warn">⚠️ Si un indicateur affiche 0, vérifiez vos filtres et permissions d'accès.</div>
+        </section>
+
+        <section id="stock">
+          <h3>📦 Gestion Stock Multi-lots</h3>
+          <p class="lead">Système avancé de gestion par lots : <b>quantités S1/S2</b>, <b>prix d'achat/vente</b>, <b>dates de péremption</b>, <b>codes-barres</b> et traçabilité complète.</p>
+          <details open>
+            <summary>➕ Ajouter ou modifier un lot</summary>
+            <ol class="steps">
+              <li class="step">Depuis le module <b>Achats</b>, la réception automatique crée/met à jour les lots</li>
+              <li class="step">Modifiez les prix de vente, dates de péremption et effectuez des transferts S1↔S2</li>
+              <li class="step">Recherchez rapidement par nom, numéro de lot ou code-barres</li>
+            </ol>
+          </details>
+          <div class="notice">✅ La synchronisation <b>Ventes → Stock</b> décrémente automatiquement les lots vendus.</div>
+        </section>
+
+        <section id="ventes">
+          <h3>💳 Module de Vente</h3>
+          <p class="lead">Interface de vente rapide : sélection produit, choix du lot, quantité, remise, mode de paiement et notes client.</p>
+          <div class="grid cols-2">
+            <div class="card">
+              <ul class="check">
+                <li>Lots triés par disponibilité et péremption</li>
+                <li>Calcul automatique du total avec remises</li>
+                <li>Historique filtrable par client/produit/statut</li>
+                <li>Génération de reçus et factures</li>
+              </ul>
+            </div>
+            <div class="card">
+              <details open>
+                <summary>💡 Conseils d'utilisation</summary>
+                <p>Commencez par sélectionner le <b>produit</b>, l'application proposera automatiquement le <b>lot optimal</b> (péremption la plus proche).</p>
+                <p>Le <b>mode de paiement</b> est mémorisé pour accélérer les transactions.</p>
+              </details>
+            </div>
+          </div>
+          <div class="notice warn">⚠️ Si l'enregistrement échoue, vérifiez : produit, quantité et lot (si stock disponible), puis votre connexion.</div>
+        </section>
+
+        <section id="achats">
+          <h3>🛒 Gestion des Achats</h3>
+          <p class="lead">Workflow complet : commande → réception → création automatique des lots. Gestion des transferts mensuels S1↔S2.</p>
+          <ul class="check">
+            <li>Réception multi-lots par ligne de commande</li>
+            <li>Transferts S1/S2 avec bon dédié</li>
+            <li>Totaux et filtres par fournisseur/date</li>
+            <li>Historique complet des réceptions</li>
+          </ul>
+          <details>
+            <summary>📋 Processus type</summary>
+            <div class="step">Créer le bon de commande (statut : commandé)</div>
+            <div class="step">Valider la réception (statut : reçu)</div>
+            <div class="step">Vérifier les <b>entrées de stock</b> générées automatiquement</div>
+          </details>
+        </section>
+
+        <section id="devis">
+          <h3>📄 Devis & Facturation</h3>
+          <p class="lead">Numérotation automatique (<span class="pill">DEV0001</span> / <span class="pill">FACT0001</span>), format professionnel, conversion en lettres.</p>
+          <details open>
+            <summary>📝 Bonnes pratiques</summary>
+            <ul class="check">
+              <li>Configurez <b>en-tête</b>, <b>pied de page</b> et <b>cachet</b> dans Paramètres</li>
+              <li>Associez les ventes aux factures pour un suivi précis</li>
+              <li>Exportez en PDF pour l'archivage et l'envoi</li>
+            </ul>
+          </details>
+          <div class="notice">🖨️ Pour un PDF professionnel, utilisez le bouton <b>PDF</b> dans la barre d'outils.</div>
+        </section>
+
+        <section id="paiements">
+          <h3>💵 Suivi des Paiements</h3>
+          <p class="lead">Gestion complète : <b>espèces</b>, <b>chèques</b>, <b>traites</b>. Suivi par document avec filtres date, statut et mode.</p>
+          <div class="grid cols-2">
+            <div class="card">
+              <ul class="check">
+                <li>Règle de caisse : contrôle du disponible en espèces</li>
+                <li>Gestion détaillée des instruments (chèques/traites)</li>
+                <li>Tableaux exportables et imprimables</li>
+                <li>Rapprochement automatique</li>
+              </ul>
+            </div>
+            <div class="card">
+              <details open>
+                <summary>🔒 Sécurité</summary>
+                <p>Limitez l'accès en écriture aux paiements aux profils de confiance uniquement.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="backup">
+          <h3>☁️ Sauvegardes Automatiques</h3>
+          <p class="lead">Export JSON complet, import contrôlé avec prévisualisation et validation.</p>
+          <details open>
+            <summary>💾 Procédure recommandée</summary>
+            <div class="step">Menu Sauvegardes → <b>Créer une sauvegarde</b> (format .json)</div>
+            <div class="step">Stockez sur clé USB, cloud ou serveur local</div>
+            <div class="step">Import : <b>prévisualisez</b> → choisir remplacement ou fusion</div>
+          </details>
+          <div class="notice danger">⚠️ <b>Mode remplacement</b> : supprime toutes les données existantes avant l'import. Utilisez avec précaution.</div>
+        </section>
+
+        <section id="invites">
+          <h3>👥 Gestion des Utilisateurs</h3>
+          <p class="lead">Le propriétaire génère un <b>code d'invitation</b> pour ajouter des membres (rôle par défaut : vendeuse).</p>
+          <ul class="check">
+            <li>Liens d'invitation avec validité limitée</li>
+            <li>Journal d'activité détaillé</li>
+            <li>Permissions personnalisables par utilisateur</li>
+            <li>Révocation instantanée des accès</li>
+          </ul>
+        </section>
+
+        <section id="params">
+          <h3>⚙️ Paramètres Généraux</h3>
+          <p class="lead">Configuration complète : documents (en-tête/pied/cachet), informations officine (ICE/IF/RC), alertes stock et péremption.</p>
+          <details open>
+            <summary>🖼️ Cachet & En-tête</summary>
+            <p>Téléchargez une image ou créez un cachet texte. Taille ajustable, activation/désactivation flexible.</p>
+          </details>
+          <details>
+            <summary>🔔 Alertes Stock</summary>
+            <p>Définissez un seuil global, configurez les alertes péremption (ex: 30 jours), numérotation automatique des lots.</p>
+          </details>
+        </section>
+
+        <section id="faq">
+          <h3>❓ Questions Fréquentes</h3>
+          <details open>
+            <summary>🚫 Rien ne s'affiche dans l'application</summary>
+            <p>Vérifiez votre compte connecté (rôle, identifiant société) et votre connexion internet. Essayez de vous déconnecter puis reconnecter.</p>
+          </details>
+          <details>
+            <summary>⚠️ Le bouton Enregistrer ne fonctionne pas</summary>
+            <p>Assurez-vous que tous les champs requis sont remplis : produit, quantité, lot (si stock > 0). Consultez la section <a href="#ventes">Ventes</a>.</p>
+          </details>
+          <details>
+            <summary>🖨️ Problèmes d'impression</summary>
+            <p>Utilisez le bouton <b>PDF</b> en haut de page pour un rendu optimal. Sur mobile, privilégiez Chrome ou Safari.</p>
+          </details>
+          <details>
+            <summary>🔄 Synchronisation entre appareils</summary>
+            <p>La synchronisation Firebase est automatique. En cas de problème, vérifiez votre connexion et rafraîchissez la page.</p>
+          </details>
+        </section>
+
+        <section id="support">
+          <h3>🆘 Support Technique</h3>
+          <p class="lead">Besoin d'assistance ? Notre équipe est disponible via WhatsApp :</p>
+          <p style="margin-top:24px">
+            <a class="btn accent" id="waLink" target="_blank" rel="noopener" style="font-size:16px;padding:14px 28px;">
+              📱 Contacter le Support WhatsApp
+            </a>
+          </p>
+          <p style="margin-top:16px;color:var(--muted);font-size:14px;">
+            📞 <span id="waNumber"></span>
+          </p>
+        </section>
+
+      </div>
+
+      <footer>
+        <div style="margin-bottom:8px">
+          <div class="pharma-cross" style="width:32px;height:32px;margin:0 auto 12px"></div>
+        </div>
+        © <span id="year"></span> <b>Pharma Gestion</b> – Guide Utilisateur Professionnel
+        <br>
+        <small style="margin-top:8px;display:block">Tous droits réservés • Version 2.0</small>
+      </footer>
+    </main>
+  </div>
+
+<script>
+(function(){
+  const qs = (s, el=document)=>el.querySelector(s);
+  const qsa = (s, el=document)=>[...el.querySelectorAll(s)];
+
+  // THEME
+  const theme = localStorage.getItem("docTheme") || "light";
+  document.body.setAttribute("data-theme", theme);
+
+  // Buttons
+  qs("#printBtn").addEventListener("click", ()=> window.print());
+  qs("#toggleTheme").addEventListener("click", ()=>{
+    const next = document.body.getAttribute("data-theme")==="dark" ? "light" : "dark";
+    document.body.setAttribute("data-theme", next);
+    localStorage.setItem("docTheme", next);
+  });
+  qs("#expandAll").addEventListener("click", ()=> qsa("details").forEach(d=> d.open = true));
+  qs("#collapseAll").addEventListener("click", ()=> qsa("details").forEach(d=> d.open = false));
+
+  // TOC active
+  const tocLinks = qsa(".toc a");
+  const sections = qsa("main section[id]");
+  const makeActive = (id)=>{
+    tocLinks.forEach(a=> a.classList.toggle("active", a.getAttribute("href") === ("#"+id)));
+  };
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ makeActive(entry.target.id); }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+  sections.forEach(s=> io.observe(s));
+
+  // Search
+  const searchInput = qs("#searchInput"); let lastQuery = "";
+  searchInput.addEventListener("input", ()=>{
+    const q = searchInput.value.trim().toLowerCase();
+    if(q === lastQuery) return; lastQuery = q;
+
+    sections.forEach(sec=>{
+      qsa(".srchHit", sec).forEach(hit=>{
+        const parent = hit.parentNode;
+        parent.replaceChild(document.createTextNode(hit.textContent), hit);
+        parent.normalize();
+      });
+
+      if(!q){ sec.classList.remove("hidden"); return; }
+
+      const text = sec.textContent.toLowerCase();
+      const show = text.includes(q);
+      sec.classList.toggle("hidden", !show);
+
+      if(show){ highlight(sec, q); }
+    });
+  });
+
+  function highlight(root, q){
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const idx = node.nodeValue.toLowerCase().indexOf(q);
+      if(idx >= 0 && node.nodeValue.trim()){
+        const range = document.createRange();
+        range.setStart(node, idx);
+        range.setEnd(node, idx + q.length);
+        const mark = document.createElement("span");
+        mark.className = "srchHit";
+        range.surroundContents(mark);
+      }
+    });
+  }
+
+  // WhatsApp
+  const waNumber = "+33749618704";
+  const waText = encodeURIComponent("Bonjour, j'ai besoin d'aide avec Pharma Gestion...");
+  const waLink = qs("#waLink");
+  waLink.href = `https://wa.me/${waNumber}?text=${waText}`;
+  qs("#waNumber").textContent = waNumber;
+
+  // Footer
+  qs("#year").textContent = new Date().getFullYear();
+
+  // Smooth scroll
+  qsa('a[href^="#"]').forEach(a=>{
+    a.addEventListener("click", (e)=>{
+      const id = a.getAttribute("href").slice(1);
+      const target = qs("#"+id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({ behavior:"smooth", block:"start" });
+        history.replaceState(null, "", "#"+id);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
