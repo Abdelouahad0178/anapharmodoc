@@ -555,6 +555,8 @@
   @media (max-width:768px){
     .card{
       padding:16px;
+      width:75%;
+      
     }
   }
   
@@ -729,6 +731,7 @@
     overflow-x:auto;
     font-size:13px;
     border:1px solid var(--border);
+    width:100%
   }
 
   code{
@@ -890,7 +893,7 @@
             <div class="card">
               <details open>
                 <summary>🔧 Configuration Firebase</summary>
-                <p class="lead">Authentification sécurisée avec base de données Firestore et persistance locale automatique.</p>
+                <p class="lead">Authentification sécurisée avec base de données Firestore <br>et persistance locale automatique.</p>
                 <pre><code>// Stockage local avec support multi-onglets
 initializeFirestore(app, {
   localCache: persistentLocalCache({
