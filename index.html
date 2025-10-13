@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Guide Utilisateur – Pharma Gestion (Anapharmo)</title>
-<meta name="description" content="Documentation détaillée et moderne pour l'application React Pharma Gestion / Anapharmo." />
+<title>Guide Complet – Pharma Gestion (Anapharmo)</title>
+<meta name="description" content="Documentation complète pour l'application React Pharma Gestion / Anapharmo." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ctext y='.9em' font-size='96'%3E⚕️%3C/text%3E%3C/svg%3E">
 <style>
   /* ======================= THEME PHARMACIE PROFESSIONNEL ======================= */
@@ -13,9 +13,9 @@
     --surface:#ffffff; 
     --text:#1a2332; 
     --muted:#5a6c7d;
-    --primary:#00A651; /* Vert pharmacie */
+    --primary:#00A651;
     --primary-dark:#008542;
-    --accent:#0066CC; /* Bleu médical */
+    --accent:#0066CC;
     --accent-light:#4d94ff;
     --success:#10b981; 
     --warn:#f59e0b; 
@@ -60,12 +60,10 @@
     min-height:100vh;
   }
   
-  /* Tablette */
   @media (max-width:1100px){ 
     .layout{grid-template-columns: 280px 1fr} 
   }
   
-  /* Mobile */
   @media (max-width:768px){ 
     .layout{grid-template-columns: 1fr} 
   }
@@ -81,14 +79,12 @@
     box-shadow:var(--shadow-lg);
   }
   
-  /* Tablette */
   @media (max-width:1100px){ 
     aside{ 
       font-size:14px;
     } 
   }
   
-  /* Mobile */
   @media (max-width:768px){ 
     aside{ 
       position:static; 
@@ -98,7 +94,6 @@
     } 
   }
 
-  /* Croix de pharmacie dans le logo */
   .pharma-cross{
     width:42px;
     height:42px;
@@ -147,7 +142,6 @@
     font-size:13px;
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .brand{
       padding:20px 16px;
@@ -170,7 +164,6 @@
     background:rgba(0,166,81,.02);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .tools{
       padding:16px;
@@ -217,7 +210,6 @@
     border-color:var(--border);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .btn{
       padding:8px 12px;
@@ -325,7 +317,6 @@
     position:relative;
   }
   
-  /* Tablette */
   @media (max-width:1100px){
     .hero{
       padding:50px 30px;
@@ -342,7 +333,6 @@
     }
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .hero{
       padding:40px 20px;
@@ -366,21 +356,18 @@
     margin:0 auto;
   }
   
-  /* Tablette */
   @media (max-width:1100px){
     .container{
       padding:30px;
     }
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .container{
       padding:20px;
     }
   }
 
-  /* Raccourcis */
   .shortcuts{
     display:grid; 
     grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); 
@@ -388,7 +375,6 @@
     margin: 32px 0 40px;
   }
   
-  /* Tablette */
   @media (max-width:1100px){ 
     .shortcuts{
       grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
@@ -396,7 +382,6 @@
     } 
   }
   
-  /* Mobile */
   @media (max-width:768px){ 
     .shortcuts{
       grid-template-columns: repeat(2, 1fr);
@@ -457,7 +442,6 @@
     font-weight:500;
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .shot{
       padding:16px;
@@ -474,7 +458,6 @@
     }
   }
 
-  /* Sections */
   section{
     scroll-margin-top:120px; 
     margin:36px 0; 
@@ -496,7 +479,6 @@
     border-radius:var(--radius) 0 0 var(--radius);
   }
   
-  /* Tablette */
   @media (max-width:1100px){
     section{
       margin:28px 0;
@@ -504,7 +486,6 @@
     }
   }
   
-  /* Mobile */
   @media (max-width:768px){
     section{
       margin:20px 0;
@@ -524,7 +505,6 @@
     color:var(--primary-dark);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     h3{
       font-size:22px;
@@ -539,7 +519,6 @@
     line-height:1.7;
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .lead{
       font-size:14px;
@@ -551,13 +530,11 @@
   .grid.cols-2{grid-template-columns:1fr 1fr}
   .grid.cols-3{grid-template-columns:1fr 1fr 1fr}
   
-  /* Tablette */
   @media (max-width:1100px){ 
     .grid{gap:16px}
     .grid.cols-3{grid-template-columns:1fr 1fr} 
   }
   
-  /* Mobile */
   @media (max-width:768px){ 
     .grid{gap:12px}
     .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} 
@@ -575,7 +552,6 @@
     transform:translateY(-2px);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .card{
       padding:16px;
@@ -629,7 +605,6 @@
     justify-content:center;
   }
   
-  /* Mobile */
   @media (max-width:768px){
     ul.check li{
       padding-left:32px;
@@ -668,7 +643,6 @@
     box-shadow:var(--shadow);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .step{
       padding-left:44px;
@@ -716,7 +690,6 @@
     background:rgba(239,68,68,.08);
   }
   
-  /* Mobile */
   @media (max-width:768px){
     .notice{
       padding:12px 16px;
@@ -734,7 +707,6 @@
     font-weight:500;
   }
   
-  /* Mobile */
   @media (max-width:768px){
     footer{
       padding:32px 20px;
@@ -742,7 +714,6 @@
     }
   }
 
-  /* Utils */
   .hidden{display:none !important}
   .srchHit{
     background:rgba(245,158,11,.3); 
@@ -769,6 +740,25 @@
     padding-left:0;
     list-style:none;
   }
+
+  .feature-badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin-left:8px;
+  }
+  .feature-badge.new{
+    background:linear-gradient(135deg, #10b981, #059669);
+    color:#fff;
+  }
+  .feature-badge.crud{
+    background:linear-gradient(135deg, #3b82f6, #2563eb);
+    color:#fff;
+  }
 </style>
 </head>
 <body data-theme="light">
@@ -780,7 +770,7 @@
         <div class="pharma-cross"></div>
         <div>
           <h1>Pharma Gestion</h1>
-          <small>Guide Utilisateur Professionnel</small>
+          <small>Guide Utilisateur Complet</small>
         </div>
       </div>
 
@@ -802,14 +792,17 @@
         <a href="#roles">🧑‍⚕️ <b>Rôles & Accès</b><small>&nbsp;Permissions</small></a>
         <div class="sep"></div>
         <a href="#dashboard">📊 <b>Dashboard</b><small>&nbsp;Indicateurs</small></a>
+        <a href="#analytics">📈 <b>Analytics</b><small>&nbsp;Graphiques</small></a>
         <a href="#stock">📦 <b>Stock multi-lots</b><small>&nbsp;Gestion</small></a>
         <a href="#ventes">💳 <b>Ventes</b><small>&nbsp;Encaissement</small></a>
         <a href="#achats">🛒 <b>Achats</b><small>&nbsp;Réception</small></a>
+        <a href="#clients">👥 <b>Clients & Ordonnances</b><small>&nbsp;Suivi</small></a>
         <a href="#devis">📄 <b>Devis & Factures</b><small>&nbsp;Documents</small></a>
-        <a href="#paiements">💵 <b>Paiements</b><small>&nbsp;Suivi</small></a>
+        <a href="#paiements">💵 <b>Paiements CRUD</b><small>&nbsp;Gestion complète</small></a>
         <a href="#backup">☁️ <b>Sauvegardes</b><small>&nbsp;Export/Import</small></a>
-        <a href="#invites">👥 <b>Utilisateurs</b><small>&nbsp;Invitations</small></a>
+        <a href="#invites">👤 <b>Utilisateurs</b><small>&nbsp;Gestion</small></a>
         <a href="#params">⚙️ <b>Paramètres</b><small>&nbsp;Configuration</small></a>
+        <a href="#legal">⚖️ <b>Documents Légaux</b><small>&nbsp;CGU/CGV</small></a>
         <div class="sep"></div>
         <a href="#faq">❓ <b>FAQ</b><small>&nbsp;Aide</small></a>
         <a href="#support">🆘 <b>Support</b><small>&nbsp;Contact</small></a>
@@ -830,35 +823,35 @@
               <span>Démarrer</span>
               <span class="hint">Installation rapide</span>
             </a>
+            <a class="shot" href="#analytics">
+              <span class="icon">📈</span>
+              <span>Analytics</span>
+              <span class="hint">Statistiques</span>
+            </a>
             <a class="shot" href="#ventes">
               <span class="icon">💳</span>
               <span>Ventes</span>
               <span class="hint">Encaissement</span>
             </a>
-            <a class="shot" href="#achats">
-              <span class="icon">🛒</span>
-              <span>Achats</span>
-              <span class="hint">Commandes</span>
+            <a class="shot" href="#clients">
+              <span class="icon">👥</span>
+              <span>Clients</span>
+              <span class="hint">Ordonnances</span>
+            </a>
+            <a class="shot" href="#paiements">
+              <span class="icon">💵</span>
+              <span>Paiements</span>
+              <span class="hint">CRUD complet</span>
             </a>
             <a class="shot" href="#stock">
               <span class="icon">📦</span>
               <span>Stock</span>
-              <span class="hint">Inventaire</span>
-            </a>
-            <a class="shot" href="#devis">
-              <span class="icon">📄</span>
-              <span>Documents</span>
-              <span class="hint">Devis & Factures</span>
+              <span class="hint">Multi-lots</span>
             </a>
             <a class="shot" href="#backup">
               <span class="icon">☁️</span>
               <span>Backup</span>
               <span class="hint">Sécurité</span>
-            </a>
-            <a class="shot" href="#invites">
-              <span class="icon">👥</span>
-              <span>Équipe</span>
-              <span class="hint">Gestion</span>
             </a>
             <a class="shot" href="#params">
               <span class="icon">⚙️</span>
@@ -873,11 +866,14 @@
 
         <section id="intro">
           <h3>📌 Introduction</h3>
-          <p class="lead">Application web complète pour la gestion pharmaceutique : <b>stock multi-lots</b>, <b>ventes</b>, <b>achats</b>, <b>facturation</b>, <b>paiements</b> et <b>sauvegardes</b>. Développée avec <b>React</b> et <b>Firebase</b> pour une performance optimale.</p>
+          <p class="lead">Application web complète pour la gestion pharmaceutique : <b>stock multi-lots</b>, <b>ventes</b>, <b>achats</b>, <b>clients & ordonnances</b>, <b>analytics avancés</b>, <b>paiements CRUD</b>, <b>facturation</b> et <b>sauvegardes</b>. Développée avec <b>React</b> et <b>Firebase</b> pour une performance optimale.</p>
           <ul class="check">
             <li>Interface <b>professionnelle</b> et intuitive</li>
             <li>Compatible ordinateur, tablette et mobile</li>
             <li>Recherche instantanée et navigation fluide</li>
+            <li>Analytics avec graphiques interactifs</li>
+            <li>Gestion complète des paiements (CRUD)</li>
+            <li>Suivi des ordonnances avec WhatsApp</li>
             <li>Sécurité et sauvegarde automatique</li>
           </ul>
           <div class="notice">💡 <b>Astuce :</b> Utilisez <span class="kbd">Ctrl</span> + <span class="kbd">F</span> pour une recherche rapide, ou la barre de recherche intégrée.</div>
@@ -902,27 +898,23 @@ initializeFirestore(app, {
   })
 });</code></pre>
               </details>
-              <details>
-                <summary>💡 Navigateurs recommandés</summary>
-                <p>Chrome, Edge ou Firefox pour une expérience optimale. Autorisez la persistance locale si demandée.</p>
-              </details>
             </div>
           </div>
         </section>
 
         <section id="roles">
           <h3>🧑‍⚕️ Rôles & Permissions</h3>
-          <p class="lead">Système de rôles flexible : <b>Propriétaire</b>, <b>Docteur</b>, <b>Vendeuse</b>. Permissions personnalisables selon les besoins de votre équipe.</p>
+          <p class="lead">Système de rôles flexible : <b>Docteur (Owner)</b>, <b>Vendeuse</b>. Permissions personnalisables selon les besoins.</p>
           <div class="grid cols-2">
             <div class="card">
-              <h4 style="margin-bottom:12px;color:var(--primary);">👑 Propriétaire</h4>
+              <h4 style="margin-bottom:12px;color:var(--primary);">👑 Docteur (Owner)</h4>
               <span class="pill">Accès complet</span>
-              <p style="margin-top:12px;">Paramètres, sauvegardes, utilisateurs, ventes, achats et stock</p>
+              <p style="margin-top:12px;">Tous les modules, paramètres, sauvegardes, gestion utilisateurs, analytics</p>
             </div>
             <div class="card">
               <h4 style="margin-bottom:12px;color:var(--accent);">👩‍💼 Vendeuse</h4>
               <span class="pill">Accès limité</span>
-              <p style="margin-top:12px;">Ventes et consultation du stock. Permissions supplémentaires configurables</p>
+              <p style="margin-top:12px;">Ventes, consultation stock, clients. Permissions configurables</p>
             </div>
           </div>
         </section>
@@ -936,7 +928,33 @@ initializeFirestore(app, {
             <li>Alertes et notifications importantes</li>
             <li>Statistiques de performance</li>
           </ul>
-          <div class="notice warn">⚠️ Si un indicateur affiche 0, vérifiez vos filtres et permissions d'accès.</div>
+        </section>
+
+        <section id="analytics">
+          <h3>📈 Analytics & Statistiques <span class="feature-badge new">Nouveau</span></h3>
+          <p class="lead">Tableaux de bord analytiques avec graphiques interactifs pour visualiser vos performances.</p>
+          
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Analytics</h4>
+            <ul class="check">
+              <li><b>Périodes flexibles</b> : Jour (30j), Semaine (12 sem.), Mois (12 mois), Année (5 ans)</li>
+              <li><b>Métriques multiples</b> : CA, Achats, Paiements, Bénéfice</li>
+              <li><b>Types de graphiques</b> : Ligne, Barres, Camembert</li>
+              <li><b>Comparaisons</b> : Toutes métriques sur un seul graphique</li>
+              <li><b>Statistiques</b> : Total, Moyenne, Maximum pour chaque métrique</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>📊 Utilisation des Analytics</summary>
+            <div class="step">Sélectionnez la <b>période</b> d'analyse (jour, semaine, mois, année)</div>
+            <div class="step">Choisissez la <b>métrique</b> à visualiser (CA, achats, paiements, bénéfice)</div>
+            <div class="step">Optez pour le <b>type de graphique</b> (ligne ou barres)</div>
+            <div class="step">Consultez les <b>cartes statistiques</b> pour les totaux et moyennes</div>
+            <div class="step">Utilisez le <b>graphique comparatif</b> pour voir toutes les métriques</div>
+          </details>
+
+          <div class="notice">💡 <b>Astuce :</b> Le graphique camembert montre la répartition entre CA, Achats et Paiements sur la période sélectionnée.</div>
         </section>
 
         <section id="stock">
@@ -969,11 +987,9 @@ initializeFirestore(app, {
               <details open>
                 <summary>💡 Conseils d'utilisation</summary>
                 <p>Commencez par sélectionner le <b>produit</b>, l'application proposera automatiquement le <b>lot optimal</b> (péremption la plus proche).</p>
-                <p>Le <b>mode de paiement</b> est mémorisé pour accélérer les transactions.</p>
               </details>
             </div>
           </div>
-          <div class="notice warn">⚠️ Si l'enregistrement échoue, vérifiez : produit, quantité et lot (si stock disponible), puis votre connexion.</div>
         </section>
 
         <section id="achats">
@@ -985,12 +1001,38 @@ initializeFirestore(app, {
             <li>Totaux et filtres par fournisseur/date</li>
             <li>Historique complet des réceptions</li>
           </ul>
-          <details>
-            <summary>📋 Processus type</summary>
-            <div class="step">Créer le bon de commande (statut : commandé)</div>
-            <div class="step">Valider la réception (statut : reçu)</div>
-            <div class="step">Vérifier les <b>entrées de stock</b> générées automatiquement</div>
+        </section>
+
+        <section id="clients">
+          <h3>👥 Clients & Suivi des Ordonnances <span class="feature-badge new">Nouveau</span></h3>
+          <p class="lead">Module complet de gestion des clients et ordonnances avec notification WhatsApp automatique.</p>
+          
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Ordonnances</h4>
+            <ul class="check">
+              <li><b>Création ordonnances</b> : Client, médecin, médicaments (du stock ou hors stock)</li>
+              <li><b>États multiples</b> : Nouvelle → En préparation → Prête → Livrée</li>
+              <li><b>Notification WhatsApp</b> : Envoi automatique avec code de retrait</li>
+              <li><b>Mode livraison</b> : Retrait ou livraison avec adresse</li>
+              <li><b>Suivi complet</b> : Recherche, filtres, historique par statut</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>📱 Workflow Ordonnance avec WhatsApp</summary>
+            <div class="step">Créer l'ordonnance avec <b>client</b>, <b>téléphone</b>, <b>médecin</b> et <b>médicaments</b></div>
+            <div class="step">Démarrer la préparation (statut : <span class="pill">En préparation</span>)</div>
+            <div class="step">Marquer <b>Prête + WhatsApp</b> : génère un code et envoie message automatique</div>
+            <div class="step">À la remise au client, vérifier le <b>code de retrait</b></div>
+            <div class="step">Marquer comme <b>Livrée</b> après validation du code</div>
           </details>
+
+          <div class="card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--accent);">💊 Médicaments : Stock ou Hors Stock</h4>
+            <p><b>Option 1 - Depuis le stock :</b> Sélectionnez un médicament existant, le système copie automatiquement le nom, fournisseur et prix de vente.</p>
+            <p style="margin-top:8px"><b>Option 2 - Nouveau médicament (hors stock) :</b> Créez un article local sans l'ajouter au stock. Saisissez nom, prix et fournisseur.</p>
+            <div class="notice" style="margin-top:12px">⚠️ Les médicaments "hors stock" apparaissent uniquement dans l'ordonnance et ne modifient pas votre inventaire.</div>
+          </div>
         </section>
 
         <section id="devis">
@@ -1004,27 +1046,82 @@ initializeFirestore(app, {
               <li>Exportez en PDF pour l'archivage et l'envoi</li>
             </ul>
           </details>
-          <div class="notice">🖨️ Pour un PDF professionnel, utilisez le bouton <b>PDF</b> dans la barre d'outils.</div>
         </section>
 
         <section id="paiements">
-          <h3>💵 Suivi des Paiements</h3>
-          <p class="lead">Gestion complète : <b>espèces</b>, <b>chèques</b>, <b>traites</b>. Suivi par document avec filtres date, statut et mode.</p>
-          <div class="grid cols-2">
-            <div class="card">
-              <ul class="check">
-                <li>Règle de caisse : contrôle du disponible en espèces</li>
-                <li>Gestion détaillée des instruments (chèques/traites)</li>
-                <li>Tableaux exportables et imprimables</li>
-                <li>Rapprochement automatique</li>
-              </ul>
-            </div>
-            <div class="card">
-              <details open>
-                <summary>🔒 Sécurité</summary>
-                <p>Limitez l'accès en écriture aux paiements aux profils de confiance uniquement.</p>
-              </details>
-            </div>
+          <h3>💵 Gestion des Paiements CRUD <span class="feature-badge crud">CRUD</span></h3>
+          <p class="lead">Module complet de gestion des paiements avec <b>Créer, Modifier, Supprimer</b>. Gestion avancée des instruments (chèques/traites).</p>
+          
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités CRUD Paiements</h4>
+            <ul class="check">
+              <li><b>Créer</b> : Paiements espèces, chèques ou traites avec instruments multiples</li>
+              <li><b>Modifier</b> : Éditer date, mode, montant et instruments d'un paiement existant</li>
+              <li><b>Supprimer</b> : Suppression avec recalcul automatique du solde document</li>
+              <li><b>Instruments</b> : Gestion détaillée (banque, n°, échéance, titulaire, montant)</li>
+              <li><b>Filtres avancés</b> : Par nom, date, mode de paiement, statut</li>
+              <li><b>Statistiques</b> : Totaux par mode (espèces/chèques/traites)</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>➕ Créer un paiement</summary>
+            <div class="step">Sélectionnez un <b>document avec solde</b> (vente ou achat)</div>
+            <div class="step">Choisissez le <b>mode de paiement</b> : Espèces, Chèque ou Traite</div>
+            <div class="step"><b>Espèces</b> : Saisissez le montant directement</div>
+            <div class="step"><b>Chèques/Traites</b> : Ajoutez des instruments avec détails complets</div>
+            <div class="step">Enregistrez : le solde et statut du document se mettent à jour automatiquement</div>
+          </details>
+
+          <details>
+            <summary>✏️ Modifier un paiement</summary>
+            <div class="step">Cliquez sur <b>Modifier</b> dans la liste des paiements d'un document</div>
+            <div class="step">Modifiez la <b>date</b>, le <b>mode</b> ou le <b>montant</b></div>
+            <div class="step">Pour chèques/traites : modifiez les instruments (ajout, suppression, édition)</div>
+            <div class="step">Enregistrez : recalcul automatique du total et du solde document</div>
+          </details>
+
+          <details>
+            <summary>🗑️ Supprimer un paiement</summary>
+            <div class="step">Cliquez sur <b>🗑️</b> à côté du paiement</div>
+            <div class="step">Confirmez la suppression</div>
+            <div class="step">Le montant est automatiquement soustrait et le statut du document recalculé</div>
+          </details>
+
+          <div class="card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--accent);">📋 Gestion des Instruments</h4>
+            <p><b>Pour chèques et traites :</b> Vous pouvez gérer plusieurs instruments par paiement.</p>
+            <p style="margin-top:8px"><b>Champs instrument :</b></p>
+            <ul style="margin-top:8px;padding-left:20px">
+              <li>Type (chèque ou traite)</li>
+              <li>Banque</li>
+              <li>Numéro</li>
+              <li>Date d'échéance</li>
+              <li>Titulaire</li>
+              <li>Montant</li>
+            </ul>
+            <div class="notice" style="margin-top:12px">💡 Le total du paiement = somme des montants de tous les instruments.</div>
+          </div>
+
+          <div class="card" style="margin-top:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary-dark);">🔍 Filtres & Recherche</h4>
+            <ul class="check">
+              <li><b>Par type</b> : Ventes ou Achats</li>
+              <li><b>Par nom</b> : Client ou fournisseur</li>
+              <li><b>Par période</b> : Date de début et fin (sur dates paiements)</li>
+              <li><b>Par mode</b> : Espèces, Chèques, Traites ou tous</li>
+              <li><b>Par statut</b> : Payés, Avec solde ou tous</li>
+              <li><b>Impression</b> : État filtré complet avec récapitulatifs</li>
+            </ul>
+          </div>
+
+          <div class="notice warn" style="margin-top:16px">
+            ⚠️ <b>Important :</b> Toute modification ou suppression de paiement recalcule automatiquement :
+            <ul style="margin-top:8px;padding-left:20px">
+              <li>Le montant total payé du document</li>
+              <li>Le solde restant</li>
+              <li>Le statut (Impayé / Partiel / Payé)</li>
+            </ul>
           </div>
         </section>
 
@@ -1041,14 +1138,37 @@ initializeFirestore(app, {
         </section>
 
         <section id="invites">
-          <h3>👥 Gestion des Utilisateurs</h3>
-          <p class="lead">Le propriétaire génère un <b>code d'invitation</b> pour ajouter des membres (rôle par défaut : vendeuse).</p>
-          <ul class="check">
-            <li>Liens d'invitation avec validité limitée</li>
-            <li>Journal d'activité détaillé</li>
-            <li>Permissions personnalisables par utilisateur</li>
-            <li>Révocation instantanée des accès</li>
-          </ul>
+          <h3>👤 Gestion des Utilisateurs <span class="feature-badge new">Amélioré</span></h3>
+          <p class="lead">Module complet de gestion d'équipe avec suppression, restauration et changement de rôles.</p>
+          
+          <div class="card" style="margin-bottom:16px">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Utilisateurs</h4>
+            <ul class="check">
+              <li><b>Invitation</b> : Code ou lien direct pour nouveaux utilisateurs</li>
+              <li><b>Rôles</b> : Docteur (owner) ou Vendeuse, modifiable à tout moment</li>
+              <li><b>Suppression</b> : Marquage avec blocage d'accès (conserve historique)</li>
+              <li><b>Restauration</b> : Réactivation d'un utilisateur supprimé</li>
+              <li><b>Suppression définitive</b> : Suppression Firestore irréversible</li>
+              <li><b>Filtres</b> : Tous, Actifs uniquement, Supprimés uniquement</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>🗑️ Supprimer un utilisateur</summary>
+            <div class="step">Menu <b>Gestion Utilisateurs</b> (réservé au Docteur/Owner)</div>
+            <div class="step">Cliquez sur <b>Supprimer</b> à côté de l'utilisateur</div>
+            <div class="step">Confirmez : l'utilisateur est marqué "supprimé" et bloqué</div>
+            <div class="step">L'historique de ses actions est conservé pour traçabilité</div>
+          </details>
+
+          <details>
+            <summary>🔄 Restaurer un utilisateur</summary>
+            <div class="step">Filtrez sur <b>Utilisateurs supprimés</b></div>
+            <div class="step">Cliquez sur <b>Restaurer</b> à côté de l'utilisateur</div>
+            <div class="step">L'utilisateur retrouve son accès et peut se reconnecter</div>
+          </details>
+
+          <div class="notice warn">⚠️ <b>Sécurité :</b> Seul le propriétaire (Docteur) peut gérer les utilisateurs. Un utilisateur ne peut pas se supprimer lui-même.</div>
         </section>
 
         <section id="params">
@@ -1064,6 +1184,32 @@ initializeFirestore(app, {
           </details>
         </section>
 
+        <section id="legal">
+          <h3>⚖️ Documents Légaux <span class="feature-badge new">Nouveau</span></h3>
+          <p class="lead">Accès centralisé à tous les documents juridiques et conditions d'utilisation.</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">📜 Documents Disponibles</h4>
+            <ul class="check">
+              <li><b>CGU</b> : Conditions Générales d'Utilisation du logiciel SaaS</li>
+              <li><b>CGV</b> : Conditions Générales de Vente et abonnements</li>
+              <li><b>Confidentialité & RGPD</b> : Politique de protection des données</li>
+              <li><b>Mentions Légales</b> : Informations légales éditeur/hébergeur</li>
+              <li><b>SLA</b> : Accord de Niveau de Service et garanties</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>📋 Accès aux documents</summary>
+            <div class="step">Menu principal → <b>Documents Légaux</b></div>
+            <div class="step">Sélectionnez l'onglet correspondant au document souhaité</div>
+            <div class="step">Consultez le contenu complet avec navigation par sections</div>
+            <div class="step">Utilisez le bouton <b>← Retour</b> pour revenir à l'application</div>
+          </details>
+
+          <div class="notice">💡 Ces documents sont conformes à la législation marocaine (Loi 09-08) et au RGPD européen.</div>
+        </section>
+
         <section id="faq">
           <h3>❓ Questions Fréquentes</h3>
           <details open>
@@ -1072,7 +1218,7 @@ initializeFirestore(app, {
           </details>
           <details>
             <summary>⚠️ Le bouton Enregistrer ne fonctionne pas</summary>
-            <p>Assurez-vous que tous les champs requis sont remplis : produit, quantité, lot (si stock > 0). Consultez la section <a href="#ventes">Ventes</a>.</p>
+            <p>Assurez-vous que tous les champs requis sont remplis : produit, quantité, lot (si stock > 0).</p>
           </details>
           <details>
             <summary>🖨️ Problèmes d'impression</summary>
@@ -1081,6 +1227,14 @@ initializeFirestore(app, {
           <details>
             <summary>🔄 Synchronisation entre appareils</summary>
             <p>La synchronisation Firebase est automatique. En cas de problème, vérifiez votre connexion et rafraîchissez la page.</p>
+          </details>
+          <details>
+            <summary>💵 Modifier un paiement déjà enregistré</summary>
+            <p>Allez dans le module <b>Paiements</b>, développez le document concerné, puis cliquez sur <b>Modifier</b> ou <b>🗑️ Supprimer</b> à côté du paiement.</p>
+          </details>
+          <details>
+            <summary>📱 Message WhatsApp ne part pas</summary>
+            <p>Vérifiez que le numéro de téléphone est au format international (+212...). Le message s'ouvre dans WhatsApp, vous devez cliquer sur <b>Envoyer</b>.</p>
           </details>
         </section>
 
@@ -1105,7 +1259,7 @@ initializeFirestore(app, {
         </div>
         © <span id="year"></span> <b>Pharma Gestion</b> – Guide Utilisateur Professionnel
         <br>
-        <small style="margin-top:8px;display:block">Tous droits réservés • Version 2.0</small>
+        <small style="margin-top:8px;display:block">Tous droits réservés • Version 3.0 • Mise à jour complète</small>
       </footer>
     </main>
   </div>
