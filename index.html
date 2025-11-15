@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Guide Complet – Pharma Gestion (Anapharmo)</title>
-<meta name="description" content="Documentation complète pour l'application React Pharma Gestion / Anapharmo." />
+<meta name="description" content="Documentation complète pour l'application React Pharma Gestion / Anapharmo - Gestion moderne de pharmacie." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ctext y='.9em' font-size='96'%3E⚕️%3C/text%3E%3C/svg%3E">
 <style>
   /* ======================= THEME PHARMACIE PROFESSIONNEL ======================= */
@@ -229,913 +229,852 @@
     background:var(--surface); 
     color:var(--text); 
     font-weight:500;
-    font-size:14px;
-    transition:all .2s ease;
+    transition:all .2s;
   }
   .search input:focus{
-    outline:none;
+    outline:none; 
     border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(0,166,81,.1);
+    box-shadow:0 0 0 4px rgba(0,166,81,.1);
   }
 
-  nav.toc{padding:16px 12px 40px}
-  .toc .title{
-    margin:12px 12px 16px; 
-    color:var(--muted); 
-    font-weight:700; 
-    text-transform:uppercase; 
-    letter-spacing:.1em; 
-    font-size:11px;
+  .toc{
+    padding:24px 0; 
+    overflow-y:auto; 
+    max-height:calc(100vh - 320px);
   }
   .toc a{
-    display:flex; 
-    gap:12px; 
-    align-items:center; 
-    padding:12px 16px; 
-    margin:4px 8px; 
-    border-radius:var(--radius-sm);
-    color:var(--text); 
-    text-decoration:none; 
-    border:2px solid transparent; 
-    font-weight:600;
-    font-size:14px;
-    transition:all .2s ease;
-  }
-  .toc a small{
-    color:var(--muted); 
+    display:block; 
+    padding:10px 24px; 
+    border-left:3px solid transparent;
+    transition:all .15s;
     font-weight:500;
-    font-size:12px;
-  }
-  .toc a.active{
-    border-color:var(--primary); 
-    background:linear-gradient(135deg, rgba(0,166,81,.1), rgba(0,166,81,.05));
-    color:var(--primary-dark);
+    font-size:14.5px;
   }
   .toc a:hover{
-    border-color:var(--border); 
-    background:rgba(0,166,81,.05);
+    background:rgba(0,166,81,.06);
+    border-left-color:var(--primary);
+    padding-left:28px;
   }
-  .toc .sep{
-    margin:20px 20px; 
-    height:2px; 
-    background:linear-gradient(90deg, transparent, var(--border), transparent);
-  }
-
-  main{min-width:0}
-
-  .hero{
-    padding:60px min(5vw,50px); 
-    border-bottom:2px solid var(--border);
-    background:
-      linear-gradient(135deg, rgba(0,166,81,.08), rgba(0,102,204,.05)),
-      var(--surface);
-    position:relative;
-  }
-  .hero::before{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    width:400px;
-    height:400px;
-    background:radial-gradient(circle, rgba(0,166,81,.15), transparent);
-    pointer-events:none;
-  }
-  .hero h2{
-    margin:0 0 12px; 
-    font-size:38px; 
-    font-weight:700;
-    letter-spacing:.3px;
+  .toc a.active{
+    background:linear-gradient(90deg, rgba(0,166,81,.12), transparent);
+    border-left-color:var(--primary);
     color:var(--primary-dark);
-    position:relative;
-  }
-  .hero p{
-    margin:0; 
-    color:var(--muted); 
-    font-weight:500; 
-    font-size:17px;
-    position:relative;
-  }
-  
-  @media (max-width:1100px){
-    .hero{
-      padding:50px 30px;
-    }
-    .hero h2{
-      font-size:32px;
-    }
-    .hero p{
-      font-size:16px;
-    }
-    .hero::before{
-      width:300px;
-      height:300px;
-    }
-  }
-  
-  @media (max-width:768px){
-    .hero{
-      padding:40px 20px;
-    }
-    .hero h2{
-      font-size:26px;
-    }
-    .hero p{
-      font-size:15px;
-    }
-    .hero::before{
-      width:200px;
-      height:200px;
-      opacity:0.5;
-    }
+    font-weight:700;
   }
 
-  .container{
-    padding: min(5vw,50px); 
+  main{
+    padding:48px 60px 80px; 
     max-width:1200px; 
     margin:0 auto;
   }
   
-  @media (max-width:1100px){
-    .container{
-      padding:30px;
-    }
-  }
-  
   @media (max-width:768px){
-    .container{
-      padding:20px;
+    main{
+      padding:32px 20px 60px;
     }
   }
 
-  .shortcuts{
-    display:grid; 
-    grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); 
-    gap:16px;
-    margin: 32px 0 40px;
+  main h2{
+    font-size:36px; 
+    margin-bottom:12px; 
+    background:linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
   }
-  
-  @media (max-width:1100px){ 
-    .shortcuts{
-      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-      gap:12px;
-    } 
-  }
-  
-  @media (max-width:768px){ 
-    .shortcuts{
-      grid-template-columns: repeat(2, 1fr);
-      gap:10px;
-      margin:24px 0 32px;
-    } 
-  }
-  
-  @media (max-width:480px){ 
-    .shortcuts{
-      grid-template-columns: 1fr;
-    } 
-  }
-
-  .shot{
+  main h3{
+    margin:56px 0 20px; 
+    font-size:26px; 
     display:flex; 
-    flex-direction:column; 
-    gap:10px; 
-    padding:20px; 
-    border-radius:var(--radius);
-    border:2px solid var(--border); 
-    background:var(--surface); 
-    box-shadow:var(--shadow);
-    text-decoration:none; 
-    color:var(--text); 
-    font-weight:600;
-    transition:all .25s ease;
-    position:relative;
-    overflow:hidden;
-  }
-  .shot::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg, var(--primary), var(--accent));
-    transform:scaleX(0);
-    transition:transform .25s ease;
-  }
-  .shot:hover{
-    transform:translateY(-4px);
-    box-shadow:var(--shadow-lg);
-    border-color:var(--primary);
-  }
-  .shot:hover::before{
-    transform:scaleX(1);
-  }
-  .shot .icon{font-size:28px}
-  .shot span:nth-child(2){
-    font-size:15px;
+    align-items:center; 
+    gap:12px;
     color:var(--primary-dark);
   }
-  .shot .hint{
-    font-size:12px; 
-    color:var(--muted); 
-    font-weight:500;
+  main h4{
+    margin:32px 0 14px; 
+    font-size:19px;
+    color:var(--primary-dark);
   }
-  
-  @media (max-width:768px){
-    .shot{
-      padding:16px;
-      gap:8px;
-    }
-    .shot .icon{
-      font-size:24px;
-    }
-    .shot span:nth-child(2){
-      font-size:14px;
-    }
-    .shot .hint{
-      font-size:11px;
-    }
+  main p{
+    margin:16px 0; 
+    font-size:16px;
+  }
+  .lead{
+    font-size:18px; 
+    font-weight:500; 
+    color:var(--muted);
   }
 
   section{
-    scroll-margin-top:120px; 
-    margin:36px 0; 
-    padding:32px;
-    border:2px solid var(--border); 
-    border-radius:var(--radius);
-    background:var(--surface); 
-    box-shadow:var(--shadow);
-    position:relative;
+    margin-bottom:60px;
   }
-  section::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:6px;
-    height:100%;
-    background:linear-gradient(180deg, var(--primary), var(--accent));
-    border-radius:var(--radius) 0 0 var(--radius);
-  }
-  
-  @media (max-width:1100px){
-    section{
-      margin:28px 0;
-      padding:24px;
-    }
-  }
-  
-  @media (max-width:768px){
-    section{
-      margin:20px 0;
-      padding:20px;
-      scroll-margin-top:80px;
-    }
-    section::before{
-      width:4px;
-    }
-  }
-  
-  h3{
-    margin:0 0 16px; 
-    font-size:26px; 
-    font-weight:700;
-    letter-spacing:.2px;
-    color:var(--primary-dark);
-  }
-  
-  @media (max-width:768px){
-    h3{
-      font-size:22px;
-      margin:0 0 12px;
-    }
-  }
-  
-  .lead{
-    color:var(--muted); 
-    font-weight:500;
-    margin-bottom:20px;
-    line-height:1.7;
-  }
-  
-  @media (max-width:768px){
-    .lead{
-      font-size:14px;
-      margin-bottom:16px;
-    }
-  }
-
-  .grid{display:grid; gap:20px}
-  .grid.cols-2{grid-template-columns:1fr 1fr}
-  .grid.cols-3{grid-template-columns:1fr 1fr 1fr}
-  
-  @media (max-width:1100px){ 
-    .grid{gap:16px}
-    .grid.cols-3{grid-template-columns:1fr 1fr} 
-  }
-  
-  @media (max-width:768px){ 
-    .grid{gap:12px}
-    .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} 
+  section.hidden{
+    display:none;
   }
 
   .card{
-    border:2px solid var(--border); 
-    border-radius:var(--radius-sm); 
+    background:var(--surface); 
+    border:2px solid var(--border);
+    border-radius:var(--radius); 
     padding:24px; 
-    background:linear-gradient(135deg, rgba(255,255,255,.8), rgba(0,166,81,.02));
-    transition:all .2s ease;
+    margin:24px 0;
+    box-shadow:var(--shadow);
+    transition:transform .2s, box-shadow .2s;
   }
   .card:hover{
+    transform:translateY(-4px);
     box-shadow:var(--shadow-lg);
-    transform:translateY(-2px);
-  }
-  
-  @media (max-width:768px){
-    .card{
-      padding:16px;
-      width:75%;
-      
-    }
-  }
-  
-  .kbd{
-    display:inline-block; 
-    padding:4px 10px; 
-    border-radius:6px; 
-    border:1.5px solid var(--border); 
-    background:rgba(0,166,81,.08); 
-    font-weight:700;
-    font-size:13px;
-    color:var(--primary-dark);
-  }
-  
-  .pill{
-    font-size:12px; 
-    padding:4px 12px; 
-    border-radius:999px; 
-    background:linear-gradient(135deg, rgba(0,166,81,.15), rgba(0,102,204,.1)); 
-    border:1.5px solid var(--border); 
-    font-weight:700;
-    color:var(--primary-dark);
-  }
-
-  ul.check{
-    list-style:none; 
-    padding-left:0;
-  }
-  ul.check li{
-    padding-left:35px; 
-    position:relative; 
-    margin:12px 0;
-    line-height:1.6;
-  }
-  ul.check li:before{
-    content:"✓"; 
-    position:absolute; 
-    left:0; 
-    color:var(--primary); 
-    font-weight:900;
-    font-size:18px;
-    width:24px;
-    height:24px;
-    background:rgba(0,166,81,.1);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  
-  @media (max-width:768px){
-    ul.check li{
-      padding-left:32px;
-      margin:10px 0;
-      font-size:14px;
-    }
-    ul.check li:before{
-      width:22px;
-      height:22px;
-      font-size:16px;
-    }
-  }
-
-  .steps{counter-reset:s}
-  .step{
-    counter-increment:s; 
-    padding-left:52px; 
-    position:relative; 
-    margin:16px 0;
-    line-height:1.6;
-  }
-  .step:before{
-    content:counter(s); 
-    position:absolute; 
-    left:0; 
-    top:0; 
-    width:36px; 
-    height:36px; 
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800; 
-    background:linear-gradient(135deg, var(--primary), var(--accent)); 
-    color:#fff;
-    box-shadow:var(--shadow);
-  }
-  
-  @media (max-width:768px){
-    .step{
-      padding-left:44px;
-      margin:12px 0;
-      font-size:14px;
-    }
-    .step:before{
-      width:32px;
-      height:32px;
-      font-size:14px;
-    }
-  }
-
-  details{
-    border:2px solid var(--border); 
-    border-radius:var(--radius-sm); 
-    padding:16px 20px; 
-    background:rgba(0,166,81,.04);
-    margin:16px 0;
-  }
-  details summary{
-    cursor:pointer; 
-    font-weight:700;
-    color:var(--primary-dark);
-    font-size:15px;
-  }
-  details[open] summary{
-    margin-bottom:12px;
-  }
-
-  .notice{
-    border-left:5px solid var(--primary); 
-    padding:16px 20px; 
-    background:rgba(0,166,81,.08); 
-    border-radius:var(--radius-sm);
-    margin:20px 0;
-    font-weight:500;
-  }
-  .notice.warn{
-    border-left-color:var(--warn); 
-    background:rgba(245,158,11,.08);
-  }
-  .notice.danger{
-    border-left-color:var(--danger); 
-    background:rgba(239,68,68,.08);
-  }
-  
-  @media (max-width:768px){
-    .notice{
-      padding:12px 16px;
-      font-size:14px;
-      margin:16px 0;
-    }
-  }
-
-  footer{
-    padding:40px 24px; 
-    border-top:2px solid var(--border); 
-    color:var(--muted); 
-    text-align:center; 
-    background:linear-gradient(135deg, rgba(0,166,81,.03), rgba(0,102,204,.02));
-    font-weight:500;
-  }
-  
-  @media (max-width:768px){
-    footer{
-      padding:32px 20px;
-      font-size:14px;
-    }
-  }
-
-  .hidden{display:none !important}
-  .srchHit{
-    background:rgba(245,158,11,.3); 
-    border-radius:4px; 
-    padding:2px 4px;
-    font-weight:600;
-  }
-
-  pre{
-    background:rgba(0,0,0,.05);
-    padding:16px;
-    border-radius:var(--radius-sm);
-    overflow-x:auto;
-    font-size:13px;
-    border:1px solid var(--border);
-    width:100%
-  }
-
-  code{
-    font-family:'Courier New', monospace;
-    font-size:13px;
-  }
-
-  ol{
-    padding-left:0;
-    list-style:none;
   }
 
   .feature-badge{
-    display:inline-block;
-    padding:4px 10px;
-    border-radius:6px;
-    font-size:11px;
-    font-weight:700;
+    display:inline-block; 
+    padding:4px 12px; 
+    border-radius:20px; 
+    font-size:12px; 
+    font-weight:700; 
+    margin-left:12px;
     text-transform:uppercase;
-    letter-spacing:.05em;
-    margin-left:8px;
   }
   .feature-badge.new{
     background:linear-gradient(135deg, #10b981, #059669);
     color:#fff;
   }
-  .feature-badge.crud{
-    background:linear-gradient(135deg, #3b82f6, #2563eb);
+  .feature-badge.beta{
+    background:linear-gradient(135deg, #f59e0b, #d97706);
     color:#fff;
+  }
+
+  .notice{
+    padding:18px 22px; 
+    border-radius:var(--radius); 
+    margin:20px 0;
+    border-left:5px solid;
+    background:var(--surface);
+    box-shadow:var(--shadow);
+  }
+  .notice.success{
+    border-left-color:var(--success); 
+    background:linear-gradient(90deg, rgba(16,185,129,.08), transparent);
+  }
+  .notice.warn{
+    border-left-color:var(--warn); 
+    background:linear-gradient(90deg, rgba(245,158,11,.08), transparent);
+  }
+  .notice.danger{
+    border-left-color:var(--danger); 
+    background:linear-gradient(90deg, rgba(239,68,68,.08), transparent);
+  }
+  .notice{
+    border-left-color:var(--accent);
+    background:linear-gradient(90deg, rgba(0,102,204,.08), transparent);
+  }
+
+  details{
+    margin:24px 0; 
+    border:2px solid var(--border);
+    border-radius:var(--radius); 
+    overflow:hidden;
+    background:var(--surface);
+    box-shadow:var(--shadow);
+  }
+  details summary{
+    padding:18px 22px; 
+    font-weight:700; 
+    cursor:pointer;
+    background:linear-gradient(135deg, rgba(0,166,81,.05), rgba(0,102,204,.03));
+    transition:background .2s;
+    user-select:none;
+    font-size:16px;
+  }
+  details summary:hover{
+    background:linear-gradient(135deg, rgba(0,166,81,.1), rgba(0,102,204,.06));
+  }
+  details[open] summary{
+    border-bottom:2px solid var(--border);
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color:#fff;
+  }
+  details .step{
+    padding:14px 24px; 
+    border-bottom:1px solid var(--border);
+    font-size:15px;
+  }
+  details .step:last-child{
+    border-bottom:0;
+  }
+  details p, details ul{
+    padding:18px 24px;
+  }
+
+  ul.check{
+    list-style:none; 
+    padding:0;
+  }
+  ul.check li{
+    padding:12px 0 12px 36px; 
+    position:relative;
+    font-size:15px;
+  }
+  ul.check li::before{
+    content:'✓'; 
+    position:absolute; 
+    left:0; 
+    top:10px;
+    width:24px; 
+    height:24px; 
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color:#fff; 
+    border-radius:50%;
+    display:flex; 
+    align-items:center; 
+    justify-content:center;
+    font-weight:700;
+    font-size:14px;
+  }
+
+  .srchHit{
+    background:linear-gradient(135deg, #fef3c7, #fde68a);
+    padding:2px 6px;
+    border-radius:4px;
+    font-weight:700;
+  }
+
+  footer{
+    text-align:center; 
+    padding:40px 24px; 
+    border-top:2px solid var(--border);
+    color:var(--muted);
+    background:linear-gradient(135deg, rgba(0,166,81,.02), rgba(0,102,204,.02));
+  }
+
+  .tech-stack{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+    margin:24px 0;
+  }
+  .tech-item{
+    background:var(--surface);
+    border:2px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    text-align:center;
+    transition:all .2s;
+  }
+  .tech-item:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--primary);
+  }
+  .tech-item h4{
+    margin:12px 0 8px;
+    font-size:18px;
+  }
+  .tech-item p{
+    font-size:14px;
+    color:var(--muted);
+    margin:0;
+  }
+
+  @media print{
+    aside, .tools, .search{display:none}
+    .layout{grid-template-columns: 1fr}
+    main{padding:20px; max-width:100%}
+    details{border:1px solid #ddd}
+    details[open]{page-break-inside:avoid}
   }
 </style>
 </head>
 <body data-theme="light">
   <div class="layout">
-
-    <!-- =================== SIDEBAR =================== -->
     <aside>
       <div class="brand">
         <div class="pharma-cross"></div>
         <div>
           <h1>Pharma Gestion</h1>
-          <small>Guide Utilisateur Complet</small>
+          <small>Guide Utilisateur v4.0</small>
         </div>
       </div>
 
       <div class="tools">
-        <button id="toggleTheme" class="btn">🌓 Mode</button>
-        <button id="printBtn" class="btn">🖨️ PDF</button>
-        <button id="expandAll" class="btn ghost">➕ Tout</button>
-        <button id="collapseAll" class="btn ghost">➖ Tout</button>
+        <button class="btn ghost" id="printBtn">🖨️ Imprimer</button>
+        <button class="btn ghost" id="toggleTheme">🌓 Thème</button>
+        <button class="btn ghost" id="expandAll">📖 Tout Ouvrir</button>
+        <button class="btn ghost" id="collapseAll">📕 Tout Fermer</button>
       </div>
 
       <div class="search">
-        <input id="searchInput" type="search" placeholder="🔍 Rechercher..." />
+        <input type="text" id="searchInput" placeholder="🔍 Rechercher dans la doc..." autocomplete="off">
       </div>
 
-      <nav class="toc" id="toc">
-        <div class="title">Sommaire</div>
-        <a href="#intro" class="active">📌 <b>Introduction</b><small>&nbsp;Aperçu</small></a>
-        <a href="#demarrage">🚀 <b>Démarrage</b><small>&nbsp;Installation</small></a>
-        <a href="#roles">🧑‍⚕️ <b>Rôles & Accès</b><small>&nbsp;Permissions</small></a>
-        <div class="sep"></div>
-        <a href="#dashboard">📊 <b>Dashboard</b><small>&nbsp;Indicateurs</small></a>
-        <a href="#analytics">📈 <b>Analytics</b><small>&nbsp;Graphiques</small></a>
-        <a href="#stock">📦 <b>Stock multi-lots</b><small>&nbsp;Gestion</small></a>
-        <a href="#ventes">💳 <b>Ventes</b><small>&nbsp;Encaissement</small></a>
-        <a href="#achats">🛒 <b>Achats</b><small>&nbsp;Réception</small></a>
-        <a href="#clients">👥 <b>Clients & Ordonnances</b><small>&nbsp;Suivi</small></a>
-        <a href="#devis">📄 <b>Devis & Factures</b><small>&nbsp;Documents</small></a>
-        <a href="#paiements">💵 <b>Paiements CRUD</b><small>&nbsp;Gestion complète</small></a>
-        <a href="#backup">☁️ <b>Sauvegardes</b><small>&nbsp;Export/Import</small></a>
-        <a href="#invites">👤 <b>Utilisateurs</b><small>&nbsp;Gestion</small></a>
-        <a href="#params">⚙️ <b>Paramètres</b><small>&nbsp;Configuration</small></a>
-        <a href="#legal">⚖️ <b>Documents Légaux</b><small>&nbsp;CGU/CGV</small></a>
-        <div class="sep"></div>
-        <a href="#faq">❓ <b>FAQ</b><small>&nbsp;Aide</small></a>
-        <a href="#support">🆘 <b>Support</b><small>&nbsp;Contact</small></a>
+      <nav class="toc">
+        <a href="#intro">🏠 Introduction</a>
+        <a href="#tech">🛠️ Stack Technique</a>
+        
+        <a href="#auth">🔐 Authentification</a>
+        <a href="#dashboard">📊 Dashboard</a>
+        <a href="#achats">🛒 Module Achats</a>
+        <a href="#ventes">💰 Module Ventes</a>
+        <a href="#stock">📦 Gestion Stock</a>
+        <a href="#commandes">📋 Commandes Clients</a>
+        <a href="#clients">👥 Gestion Clients</a>
+        <a href="#devis-factures">📄 Devis & Factures</a>
+        <a href="#paiements">💳 Paiements</a>
+        <a href="#cloture">🔒 Clôture Caisse</a>
+        <a href="#charges">💸 Gestion Charges</a>
+        <a href="#analytics">📈 Analytics & Statistiques</a>
+        <a href="#catalogue">📚 Catalogue Médicaments</a>
+        <a href="#backup">💾 Sauvegarde & Import</a>
+        <a href="#invites">👤 Gestion Utilisateurs</a>
+        <a href="#params">⚙️ Paramètres</a>
+        <a href="#legal">⚖️ Documents Légaux</a>
+        <a href="#faq">❓ FAQ</a>
+        <a href="#support">🆘 Support</a>
       </nav>
     </aside>
 
-    <!-- =================== CONTENT =================== -->
     <main>
-      <header class="hero">
-        <h2>⚕️ Guide Professionnel Pharma Gestion</h2>
-        <p>Documentation complète pour la gestion moderne de votre officine pharmaceutique</p>
+      <div style="margin-bottom:48px">
+        <h2>Guide Complet Pharma Gestion</h2>
+        <p class="lead">Documentation complète de l'application React de gestion de pharmacie moderne</p>
+      </div>
 
-        <!-- Barre de raccourcis -->
-        <div class="container" style="padding-left:0;padding-right:0;">
-          <div class="shortcuts">
-            <a class="shot" href="#demarrage">
-              <span class="icon">🚀</span>
-              <span>Démarrer</span>
-              <span class="hint">Installation rapide</span>
-            </a>
-            <a class="shot" href="#analytics">
-              <span class="icon">📈</span>
-              <span>Analytics</span>
-              <span class="hint">Statistiques</span>
-            </a>
-            <a class="shot" href="#ventes">
-              <span class="icon">💳</span>
-              <span>Ventes</span>
-              <span class="hint">Encaissement</span>
-            </a>
-            <a class="shot" href="#clients">
-              <span class="icon">👥</span>
-              <span>Clients</span>
-              <span class="hint">Ordonnances</span>
-            </a>
-            <a class="shot" href="#paiements">
-              <span class="icon">💵</span>
-              <span>Paiements</span>
-              <span class="hint">CRUD complet</span>
-            </a>
-            <a class="shot" href="#stock">
-              <span class="icon">📦</span>
-              <span>Stock</span>
-              <span class="hint">Multi-lots</span>
-            </a>
-            <a class="shot" href="#backup">
-              <span class="icon">☁️</span>
-              <span>Backup</span>
-              <span class="hint">Sécurité</span>
-            </a>
-            <a class="shot" href="#params">
-              <span class="icon">⚙️</span>
-              <span>Config</span>
-              <span class="hint">Paramètres</span>
-            </a>
-          </div>
-        </div>
-      </header>
-
-      <div class="container">
-
+      <div>
         <section id="intro">
-          <h3>📌 Introduction</h3>
-          <p class="lead">Application web complète pour la gestion pharmaceutique : <b>stock multi-lots</b>, <b>ventes</b>, <b>achats</b>, <b>clients & ordonnances</b>, <b>analytics avancés</b>, <b>paiements CRUD</b>, <b>facturation</b> et <b>sauvegardes</b>. Développée avec <b>React</b> et <b>Firebase</b> pour une performance optimale.</p>
-          <ul class="check">
-            <li>Interface <b>professionnelle</b> et intuitive</li>
-            <li>Compatible ordinateur, tablette et mobile</li>
-            <li>Recherche instantanée et navigation fluide</li>
-            <li>Analytics avec graphiques interactifs</li>
-            <li>Gestion complète des paiements (CRUD)</li>
-            <li>Suivi des ordonnances avec WhatsApp</li>
-            <li>Sécurité et sauvegarde automatique</li>
-          </ul>
-          <div class="notice">💡 <b>Astuce :</b> Utilisez <span class="kbd">Ctrl</span> + <span class="kbd">F</span> pour une recherche rapide, ou la barre de recherche intégrée.</div>
-        </section>
+          <h3>🏠 Introduction</h3>
+          <p class="lead">Pharma Gestion est une application web moderne et complète développée en React pour la gestion quotidienne des pharmacies.</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">✨ Fonctionnalités Principales</h4>
+            <ul class="check">
+              <li><b>Gestion complète des achats</b> : Enregistrement, suivi fournisseurs, lots et péremptions</li>
+              <li><b>Gestion des ventes</b> : Point de vente moderne avec synchronisation stock temps réel</li>
+              <li><b>Stock intelligent</b> : Alertes automatiques, traçabilité lots, péremption</li>
+              <li><b>Commandes clients</b> : Gestion complète du cycle de commande</li>
+              <li><b>Base clients</b> : Fichier client avec historique complet</li>
+              <li><b>Devis & Factures</b> : Génération automatique de documents professionnels</li>
+              <li><b>Gestion paiements</b> : Suivi multi-modes (espèces, chèques, virements, PayPal)</li>
+              <li><b>Clôture caisse</b> : Réconciliation quotidienne automatique</li>
+              <li><b>Charges</b> : Gestion personnels et charges diverses</li>
+              <li><b>Analytics avancés</b> : Graphiques et statistiques temps réel</li>
+              <li><b>Multi-utilisateurs</b> : Rôles et permissions granulaires</li>
+              <li><b>Sauvegarde/Import</b> : Export JSON et restauration complète</li>
+            </ul>
+          </div>
 
-        <section id="demarrage">
-          <h3>🚀 Démarrage rapide</h3>
-          <div class="grid cols-2">
-            <div class="card">
-              <div class="step"><b>Connexion</b> : Créez votre compte pharmacien (propriétaire)</div>
-              <div class="step"><b>Société</b> : Enregistrez votre officine pour obtenir un identifiant unique</div>
-              <div class="step"><b>Équipe</b> : Invitez vos collaborateurs avec leurs rôles respectifs</div>
-            </div>
-            <div class="card">
-              <details open>
-                <summary>🔧 Configuration Firebase</summary>
-                <p class="lead">Authentification sécurisée avec base de données Firestore <br>et persistance locale automatique.</p>
-                <pre><code>// Stockage local avec support multi-onglets
-initializeFirestore(app, {
-  localCache: persistentLocalCache({
-    tabManager: persistentMultipleTabManager()
-  })
-});</code></pre>
-              </details>
-            </div>
+          <div class="notice">
+            💡 <b>Application SaaS Multi-tenant</b> : Chaque pharmacie dispose de son espace isolé avec gestion multi-utilisateurs.
           </div>
         </section>
 
-        <section id="roles">
-          <h3>🧑‍⚕️ Rôles & Permissions</h3>
-          <p class="lead">Système de rôles flexible : <b>Docteur (Owner)</b>, <b>Vendeuse</b>. Permissions personnalisables selon les besoins.</p>
-          <div class="grid cols-2">
-            <div class="card">
-              <h4 style="margin-bottom:12px;color:var(--primary);">👑 Docteur (Owner)</h4>
-              <span class="pill">Accès complet</span>
-              <p style="margin-top:12px;">Tous les modules, paramètres, sauvegardes, gestion utilisateurs, analytics</p>
+        <section id="tech">
+          <h3>🛠️ Stack Technique</h3>
+          <p class="lead">Technologies modernes pour une application performante et évolutive</p>
+          
+          <div class="tech-stack">
+            <div class="tech-item">
+              <div style="font-size:48px">⚛️</div>
+              <h4>React 19.1</h4>
+              <p>Framework frontend avec hooks modernes</p>
             </div>
-            <div class="card">
-              <h4 style="margin-bottom:12px;color:var(--accent);">👩‍💼 Vendeuse</h4>
-              <span class="pill">Accès limité</span>
-              <p style="margin-top:12px;">Ventes, consultation stock, clients. Permissions configurables</p>
+            <div class="tech-item">
+              <div style="font-size:48px">🔥</div>
+              <h4>Firebase 12</h4>
+              <p>Backend-as-a-Service avec Firestore</p>
             </div>
+            <div class="tech-item">
+              <div style="font-size:48px">🎨</div>
+              <h4>Material-UI 7</h4>
+              <p>Composants UI professionnels</p>
+            </div>
+            <div class="tech-item">
+              <div style="font-size:48px">📊</div>
+              <h4>Recharts 3</h4>
+              <p>Graphiques interactifs</p>
+            </div>
+            <div class="tech-item">
+              <div style="font-size:48px">💳</div>
+              <h4>PayPal React</h4>
+              <p>Intégration paiements en ligne</p>
+            </div>
+            <div class="tech-item">
+              <div style="font-size:48px">📱</div>
+              <h4>HTML5-QRCode</h4>
+              <p>Scan codes-barres produits</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">📦 Dépendances Principales</h4>
+            <ul class="check">
+              <li><b>React Router DOM 7.7</b> : Navigation SPA fluide</li>
+              <li><b>Emotion & Styled Components</b> : CSS-in-JS performant</li>
+              <li><b>Tailwind CSS 4.1</b> : Utility-first styling</li>
+              <li><b>Testing Library</b> : Suite complète de tests</li>
+              <li><b>Playwright</b> : Tests end-to-end automatisés</li>
+              <li><b>Lighthouse CI</b> : Performance monitoring</li>
+              <li><b>ESLint Security</b> : Analyse sécurité du code</li>
+            </ul>
+          </div>
+        </section>
+
+       
+
+        <section id="auth">
+          <h3>🔐 Authentification & Sécurité</h3>
+          <p class="lead">Système d'authentification multi-utilisateurs avec gestion des rôles et invitations</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎭 Rôles Utilisateur</h4>
+            <ul class="check">
+              <li><b>Docteur / Owner</b> : Accès complet, gestion société et utilisateurs</li>
+              <li><b>Vendeuse</b> : Accès ventes, clients, stock consultation</li>
+              <li><b>Système d'invitations</b> : Code unique à 6 caractères par société</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>👨‍⚕️ Première Inscription (Owner)</summary>
+            <div class="step">Accédez à la page d'inscription</div>
+            <div class="step">Remplissez : Email, Mot de passe, Nom Société</div>
+            <div class="step">Validation → Création automatique du <b>societeId</b> et <b>code d'invitation</b></div>
+            <div class="step">L'utilisateur est automatiquement propriétaire (isOwner: true)</div>
+          </details>
+
+          <details>
+            <summary>👥 Invitation Vendeuses</summary>
+            <div class="step">Le propriétaire accède à <b>Gestion Utilisateurs</b></div>
+            <div class="step">Copie du <b>code d'invitation</b> à 6 caractères</div>
+            <div class="step">La vendeuse s'inscrit avec ce code</div>
+            <div class="step">Rattachement automatique à la société (même societeId)</div>
+          </details>
+
+          <div class="notice success">
+            ✅ <b>Sécurité renforcée</b> : Firebase Authentication + Rules Firestore par societeId
           </div>
         </section>
 
         <section id="dashboard">
-          <h3>📊 Tableau de bord</h3>
-          <p class="lead">Vue d'ensemble en temps réel : ventes du jour, achats, état de caisse, alertes stock et péremptions.</p>
-          <ul class="check">
-            <li>Indicateurs période (jour/semaine/mois)</li>
-            <li>Accès rapide à tous les modules</li>
-            <li>Alertes et notifications importantes</li>
-            <li>Statistiques de performance</li>
-          </ul>
-        </section>
-
-        <section id="analytics">
-          <h3>📈 Analytics & Statistiques <span class="feature-badge new">Nouveau</span></h3>
-          <p class="lead">Tableaux de bord analytiques avec graphiques interactifs pour visualiser vos performances.</p>
+          <h3>📊 Dashboard Principal</h3>
+          <p class="lead">Vue d'ensemble temps réel de l'activité de la pharmacie</p>
           
-          <div class="card" style="margin-bottom:16px">
-            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Analytics</h4>
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">📈 Indicateurs Clés (KPI)</h4>
             <ul class="check">
-              <li><b>Périodes flexibles</b> : Jour (30j), Semaine (12 sem.), Mois (12 mois), Année (5 ans)</li>
-              <li><b>Métriques multiples</b> : CA, Achats, Paiements, Bénéfice</li>
-              <li><b>Types de graphiques</b> : Ligne, Barres, Camembert</li>
-              <li><b>Comparaisons</b> : Toutes métriques sur un seul graphique</li>
-              <li><b>Statistiques</b> : Total, Moyenne, Maximum pour chaque métrique</li>
+              <li><b>Chiffre d'affaires</b> : Jour / Mois / Année avec évolution</li>
+              <li><b>Stock</b> : Valeur totale et nombre de produits</li>
+              <li><b>Alertes</b> : Produits en rupture ou proches péremption</li>
+              <li><b>Impayés</b> : Montant total et nombre de documents</li>
+              <li><b>Graphiques</b> : Ventes par période, Top produits, Tendances</li>
             </ul>
           </div>
 
-          <details open>
-            <summary>📊 Utilisation des Analytics</summary>
-            <div class="step">Sélectionnez la <b>période</b> d'analyse (jour, semaine, mois, année)</div>
-            <div class="step">Choisissez la <b>métrique</b> à visualiser (CA, achats, paiements, bénéfice)</div>
-            <div class="step">Optez pour le <b>type de graphique</b> (ligne ou barres)</div>
-            <div class="step">Consultez les <b>cartes statistiques</b> pour les totaux et moyennes</div>
-            <div class="step">Utilisez le <b>graphique comparatif</b> pour voir toutes les métriques</div>
-          </details>
-
-          <div class="notice">💡 <b>Astuce :</b> Le graphique camembert montre la répartition entre CA, Achats et Paiements sur la période sélectionnée.</div>
-        </section>
-
-        <section id="stock">
-          <h3>📦 Gestion Stock Multi-lots</h3>
-          <p class="lead">Système avancé de gestion par lots : <b>quantités S1/S2</b>, <b>prix d'achat/vente</b>, <b>dates de péremption</b>, <b>codes-barres</b> et traçabilité complète.</p>
-          <details open>
-            <summary>➕ Ajouter ou modifier un lot</summary>
-            <ol class="steps">
-              <li class="step">Depuis le module <b>Achats</b>, la réception automatique crée/met à jour les lots</li>
-              <li class="step">Modifiez les prix de vente, dates de péremption et effectuez des transferts S1↔S2</li>
-              <li class="step">Recherchez rapidement par nom, numéro de lot ou code-barres</li>
-            </ol>
-          </details>
-          <div class="notice">✅ La synchronisation <b>Ventes → Stock</b> décrémente automatiquement les lots vendus.</div>
-        </section>
-
-        <section id="ventes">
-          <h3>💳 Module de Vente</h3>
-          <p class="lead">Interface de vente rapide : sélection produit, choix du lot, quantité, remise, mode de paiement et notes client.</p>
-          <div class="grid cols-2">
-            <div class="card">
-              <ul class="check">
-                <li>Lots triés par disponibilité et péremption</li>
-                <li>Calcul automatique du total avec remises</li>
-                <li>Historique filtrable par client/produit/statut</li>
-                <li>Génération de reçus et factures</li>
-              </ul>
-            </div>
-            <div class="card">
-              <details open>
-                <summary>💡 Conseils d'utilisation</summary>
-                <p>Commencez par sélectionner le <b>produit</b>, l'application proposera automatiquement le <b>lot optimal</b> (péremption la plus proche).</p>
-              </details>
-            </div>
+          <div class="notice">
+            💡 <b>Actualisation temps réel</b> : Les données se mettent à jour automatiquement grâce à Firestore listeners.
           </div>
         </section>
 
         <section id="achats">
-          <h3>🛒 Gestion des Achats</h3>
-          <p class="lead">Workflow complet : commande → réception → création automatique des lots. Gestion des transferts mensuels S1↔S2.</p>
-          <ul class="check">
-            <li>Réception multi-lots par ligne de commande</li>
-            <li>Transferts S1/S2 avec bon dédié</li>
-            <li>Totaux et filtres par fournisseur/date</li>
-            <li>Historique complet des réceptions</li>
-          </ul>
+          <h3>🛒 Module Achats</h3>
+          <p class="lead">Gestion complète des achats fournisseurs avec traçabilité lots et péremptions</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Achats</h4>
+            <ul class="check">
+              <li><b>Saisie rapide</b> : Scanner code-barres ou recherche produit</li>
+              <li><b>Gestion lots</b> : Numéro lot, dates péremption</li>
+              <li><b>Prix d'achat HT/TTC</b> : Calcul automatique TVA</li>
+              <li><b>Fournisseurs</b> : Base fournisseurs avec historique</li>
+              <li><b>Impact stock</b> : Synchronisation automatique en temps réel</li>
+              <li><b>Documents</b> : Génération bon de réception</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>➕ Enregistrer un Achat</summary>
+            <div class="step">Menu <b>Achats</b> → Bouton <b>Nouvel Achat</b></div>
+            <div class="step">Scannez le code-barres ou recherchez le produit</div>
+            <div class="step">Renseignez : Quantité, Prix achat, Lot, Date péremption</div>
+            <div class="step">Sélectionnez ou créez le fournisseur</div>
+            <div class="step"><b>Enregistrer</b> → Stock mis à jour automatiquement</div>
+          </details>
+
+          <div class="notice warn">
+            ⚠️ <b>Lots obligatoires</b> : Pour les produits avec stock, le numéro de lot est requis pour la traçabilité.
+          </div>
+        </section>
+
+        <section id="ventes">
+          <h3>💰 Module Ventes</h3>
+          <p class="lead">Point de vente moderne avec synchronisation stock en temps réel</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Ventes</h4>
+            <ul class="check">
+              <li><b>POS rapide</b> : Interface optimisée pour la vente comptoir</li>
+              <li><b>Scan produits</b> : Lecteur code-barres intégré</li>
+              <li><b>Calcul auto</b> : Prix, remises, TVA, total TTC</li>
+              <li><b>Clients</b> : Association client et historique</li>
+              <li><b>Paiements</b> : Multi-modes (espèces, chèque, virement, PayPal)</li>
+              <li><b>Impression</b> : Ticket, facture PDF automatique</li>
+              <li><b>Sync stock</b> : Déduction automatique temps réel</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>💳 Processus de Vente</summary>
+            <div class="step">Menu <b>Ventes</b> → <b>Nouvelle Vente</b></div>
+            <div class="step">Ajoutez des produits (scan ou recherche)</div>
+            <div class="step">Appliquez remises si nécessaire</div>
+            <div class="step">Sélectionnez le client (optionnel)</div>
+            <div class="step">Choisissez le mode de paiement</div>
+            <div class="step"><b>Valider</b> → Stock déduit + Document généré</div>
+          </details>
+
+          <div class="notice success">
+            ✅ <b>Synchronisation intelligente</b> : Le système déduit automatiquement les quantités vendues du stock avec gestion FIFO des lots.
+          </div>
+        </section>
+
+        <section id="stock">
+          <h3>📦 Gestion Stock</h3>
+          <p class="lead">Contrôle complet du stock avec alertes, péremptions et traçabilité lots</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Stock</h4>
+            <ul class="check">
+              <li><b>Vue globale</b> : Liste complète des produits en stock</li>
+              <li><b>Alertes rupture</b> : Notification stock minimal atteint</li>
+              <li><b>Gestion lots</b> : Traçabilité complète par numéro de lot</li>
+              <li><b>Péremptions</b> : Alertes automatiques selon seuil (ex: 30 jours)</li>
+              <li><b>Inventaire</b> : Ajustements manuels avec justification</li>
+              <li><b>Mouvements</b> : Historique complet des entrées/sorties</li>
+              <li><b>Valorisation</b> : Calcul automatique valeur stock</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>📊 Consultation Stock</summary>
+            <div class="step">Menu <b>Stock</b> pour accéder au module</div>
+            <div class="step">Filtrez par : Catégorie, Rupture, Péremption proche</div>
+            <div class="step">Consultez les détails : Quantité, Lots, Prix moyen</div>
+            <div class="step">Accédez à l'historique des mouvements</div>
+          </details>
+
+          <details>
+            <summary>⚠️ Ajustement Inventaire</summary>
+            <div class="step">Sélectionnez le produit à ajuster</div>
+            <div class="step">Cliquez sur <b>Ajuster Stock</b></div>
+            <div class="step">Indiquez la nouvelle quantité et le motif</div>
+            <div class="step">Validez → Mouvement enregistré avec traçabilité</div>
+          </details>
+
+          <div class="notice warn">
+            ⚠️ <b>Seuils configurables</b> : Définissez vos propres seuils d'alerte dans les Paramètres.
+          </div>
+        </section>
+
+        <section id="commandes">
+          <h3>📋 Commandes Clients</h3>
+          <p class="lead">Gestion complète du cycle de vie des commandes clients</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Commandes</h4>
+            <ul class="check">
+              <li><b>Création commande</b> : Formulaire complet avec multi-produits</li>
+              <li><b>Statuts</b> : En attente, En cours, Livrée, Annulée</li>
+              <li><b>Suivi client</b> : Historique commandes par client</li>
+              <li><b>Notifications</b> : Alertes SMS/Email (optionnel)</li>
+              <li><b>Conversion</b> : Transformation en vente directe</li>
+              <li><b>Documents</b> : Bon de commande PDF</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>➕ Créer une Commande</summary>
+            <div class="step">Menu <b>Commandes</b> → <b>Nouvelle Commande</b></div>
+            <div class="step">Sélectionnez ou créez le client</div>
+            <div class="step">Ajoutez les produits commandés</div>
+            <div class="step">Définissez date livraison prévue</div>
+            <div class="step">Statut initial : <b>En attente</b></div>
+            <div class="step">Enregistrez → Client notifié</div>
+          </details>
+
+          <details>
+            <summary>✅ Valider une Commande</summary>
+            <div class="step">Ouvrez la commande</div>
+            <div class="step">Changez le statut en <b>Livrée</b></div>
+            <div class="step">Option : Convertir en vente automatique</div>
+            <div class="step">Stock déduit si conversion activée</div>
+          </details>
         </section>
 
         <section id="clients">
-          <h3>👥 Clients & Suivi des Ordonnances <span class="feature-badge new">Nouveau</span></h3>
-          <p class="lead">Module complet de gestion des clients et ordonnances avec notification WhatsApp automatique.</p>
+          <h3>👥 Gestion Clients</h3>
+          <p class="lead">Base clients complète avec historique et fidélisation</p>
           
-          <div class="card" style="margin-bottom:16px">
-            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Ordonnances</h4>
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Clients</h4>
             <ul class="check">
-              <li><b>Création ordonnances</b> : Client, médecin, médicaments (du stock ou hors stock)</li>
-              <li><b>États multiples</b> : Nouvelle → En préparation → Prête → Livrée</li>
-              <li><b>Notification WhatsApp</b> : Envoi automatique avec code de retrait</li>
-              <li><b>Mode livraison</b> : Retrait ou livraison avec adresse</li>
-              <li><b>Suivi complet</b> : Recherche, filtres, historique par statut</li>
+              <li><b>Fiche client</b> : Nom, prénom, téléphone, email, adresse</li>
+              <li><b>Historique achats</b> : Toutes les ventes par client</li>
+              <li><b>Compte client</b> : Solde impayés en temps réel</li>
+              <li><b>Statistiques</b> : CA par client, fréquence achats</li>
+              <li><b>Export</b> : Liste clients CSV/Excel</li>
+              <li><b>WhatsApp</b> : Envoi message direct depuis la fiche</li>
             </ul>
           </div>
 
           <details open>
-            <summary>📱 Workflow Ordonnance avec WhatsApp</summary>
-            <div class="step">Créer l'ordonnance avec <b>client</b>, <b>téléphone</b>, <b>médecin</b> et <b>médicaments</b></div>
-            <div class="step">Démarrer la préparation (statut : <span class="pill">En préparation</span>)</div>
-            <div class="step">Marquer <b>Prête + WhatsApp</b> : génère un code et envoie message automatique</div>
-            <div class="step">À la remise au client, vérifier le <b>code de retrait</b></div>
-            <div class="step">Marquer comme <b>Livrée</b> après validation du code</div>
+            <summary>➕ Ajouter un Client</summary>
+            <div class="step">Menu <b>Clients</b> → <b>Nouveau Client</b></div>
+            <div class="step">Remplissez les informations (téléphone recommandé)</div>
+            <div class="step">Enregistrez → Fiche créée</div>
+            <div class="step">Le client apparaît dans les listes déroulantes</div>
           </details>
 
-          <div class="card" style="margin-top:16px">
-            <h4 style="margin-bottom:12px;color:var(--accent);">💊 Médicaments : Stock ou Hors Stock</h4>
-            <p><b>Option 1 - Depuis le stock :</b> Sélectionnez un médicament existant, le système copie automatiquement le nom, fournisseur et prix de vente.</p>
-            <p style="margin-top:8px"><b>Option 2 - Nouveau médicament (hors stock) :</b> Créez un article local sans l'ajouter au stock. Saisissez nom, prix et fournisseur.</p>
-            <div class="notice" style="margin-top:12px">⚠️ Les médicaments "hors stock" apparaissent uniquement dans l'ordonnance et ne modifient pas votre inventaire.</div>
-          </div>
+          <details>
+            <summary>📊 Consulter Historique Client</summary>
+            <div class="step">Recherchez le client dans la liste</div>
+            <div class="step">Cliquez sur la fiche client</div>
+            <div class="step">Onglet <b>Historique</b> : Toutes les ventes</div>
+            <div class="step">Visualisez : Dates, montants, détails produits</div>
+          </details>
         </section>
 
-        <section id="devis">
-          <h3>📄 Devis & Facturation</h3>
-          <p class="lead">Numérotation automatique (<span class="pill">DEV0001</span> / <span class="pill">FACT0001</span>), format professionnel, conversion en lettres.</p>
-          <details open>
-            <summary>📝 Bonnes pratiques</summary>
+        <section id="devis-factures">
+          <h3>📄 Devis & Factures <span class="feature-badge new">Amélioré</span></h3>
+          <p class="lead">Génération automatique de documents professionnels personnalisés</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Documents</h4>
             <ul class="check">
-              <li>Configurez <b>en-tête</b>, <b>pied de page</b> et <b>cachet</b> dans Paramètres</li>
-              <li>Associez les ventes aux factures pour un suivi précis</li>
-              <li>Exportez en PDF pour l'archivage et l'envoi</li>
+              <li><b>Devis</b> : Création, conversion en facture</li>
+              <li><b>Factures</b> : Numérotation automatique, mentions légales</li>
+              <li><b>Personnalisation</b> : Logo, en-tête, cachet, pied de page</li>
+              <li><b>Multi-paiements</b> : Suivi acomptes et soldes</li>
+              <li><b>Statuts</b> : Brouillon, Envoyé, Payé, Impayé</li>
+              <li><b>Export PDF</b> : Qualité professionnelle</li>
+              <li><b>Relances</b> : Envoi automatique impayés</li>
             </ul>
+          </div>
+
+          <details open>
+            <summary>📝 Créer un Devis</summary>
+            <div class="step">Menu <b>Devis & Factures</b> → <b>Nouveau Devis</b></div>
+            <div class="step">Sélectionnez le client</div>
+            <div class="step">Ajoutez les produits avec quantités et prix</div>
+            <div class="step">Appliquez remises globales ou par ligne</div>
+            <div class="step">Validez → PDF généré automatiquement</div>
           </details>
+
+          <details>
+            <summary>🔄 Convertir Devis en Facture</summary>
+            <div class="step">Ouvrez le devis validé</div>
+            <div class="step">Cliquez sur <b>Convertir en Facture</b></div>
+            <div class="step">Numéro de facture attribué automatiquement</div>
+            <div class="step">Stock déduit si option activée</div>
+          </details>
+
+          <div class="notice">
+            💡 <b>Personnalisation complète</b> : Configurez votre en-tête, logo et cachet dans Paramètres → Documents.
+          </div>
         </section>
 
         <section id="paiements">
-          <h3>💵 Gestion des Paiements CRUD <span class="feature-badge crud">CRUD</span></h3>
-          <p class="lead">Module complet de gestion des paiements avec <b>Créer, Modifier, Supprimer</b>. Gestion avancée des instruments (chèques/traites).</p>
+          <h3>💳 Gestion Paiements <span class="feature-badge new">Multi-modes</span></h3>
+          <p class="lead">Suivi complet des encaissements avec réconciliation automatique</p>
           
-          <div class="card" style="margin-bottom:16px">
-            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités CRUD Paiements</h4>
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Modes de Paiement</h4>
             <ul class="check">
-              <li><b>Créer</b> : Paiements espèces, chèques ou traites avec instruments multiples</li>
-              <li><b>Modifier</b> : Éditer date, mode, montant et instruments d'un paiement existant</li>
-              <li><b>Supprimer</b> : Suppression avec recalcul automatique du solde document</li>
-              <li><b>Instruments</b> : Gestion détaillée (banque, n°, échéance, titulaire, montant)</li>
-              <li><b>Filtres avancés</b> : Par nom, date, mode de paiement, statut</li>
-              <li><b>Statistiques</b> : Totaux par mode (espèces/chèques/traites)</li>
+              <li><b>Espèces</b> : Caisse physique avec clôture journalière</li>
+              <li><b>Chèque</b> : Numéro chèque, banque, date encaissement</li>
+              <li><b>Virement</b> : Référence bancaire</li>
+              <li><b>PayPal</b> : Intégration API paiements en ligne</li>
+              <li><b>Mixtes</b> : Plusieurs modes sur une même facture</li>
+              <li><b>Acomptes</b> : Paiements partiels avec suivi solde</li>
             </ul>
           </div>
 
           <details open>
-            <summary>➕ Créer un paiement</summary>
-            <div class="step">Sélectionnez un <b>document avec solde</b> (vente ou achat)</div>
-            <div class="step">Choisissez le <b>mode de paiement</b> : Espèces, Chèque ou Traite</div>
-            <div class="step"><b>Espèces</b> : Saisissez le montant directement</div>
-            <div class="step"><b>Chèques/Traites</b> : Ajoutez des instruments avec détails complets</div>
-            <div class="step">Enregistrez : le solde et statut du document se mettent à jour automatiquement</div>
+            <summary>💰 Enregistrer un Paiement</summary>
+            <div class="step">Accédez au document (facture, vente)</div>
+            <div class="step">Cliquez sur <b>Ajouter Paiement</b></div>
+            <div class="step">Choisissez le mode et le montant</div>
+            <div class="step">Renseignez les détails (n° chèque, etc.)</div>
+            <div class="step">Validez → Solde recalculé automatiquement</div>
           </details>
 
           <details>
-            <summary>✏️ Modifier un paiement</summary>
-            <div class="step">Cliquez sur <b>Modifier</b> dans la liste des paiements d'un document</div>
-            <div class="step">Modifiez la <b>date</b>, le <b>mode</b> ou le <b>montant</b></div>
-            <div class="step">Pour chèques/traites : modifiez les instruments (ajout, suppression, édition)</div>
-            <div class="step">Enregistrez : recalcul automatique du total et du solde document</div>
+            <summary>📊 Suivi Impayés</summary>
+            <div class="step">Menu <b>Paiements</b> → Filtre <b>Impayés</b></div>
+            <div class="step">Liste des factures/ventes non soldées</div>
+            <div class="step">Montant restant dû affiché</div>
+            <div class="step">Action : Relance client ou nouveau paiement</div>
           </details>
 
-          <details>
-            <summary>🗑️ Supprimer un paiement</summary>
-            <div class="step">Cliquez sur <b>🗑️</b> à côté du paiement</div>
-            <div class="step">Confirmez la suppression</div>
-            <div class="step">Le montant est automatiquement soustrait et le statut du document recalculé</div>
-          </details>
-
-          <div class="card" style="margin-top:16px">
-            <h4 style="margin-bottom:12px;color:var(--accent);">📋 Gestion des Instruments</h4>
-            <p><b>Pour chèques et traites :</b> Vous pouvez gérer plusieurs instruments par paiement.</p>
-            <p style="margin-top:8px"><b>Champs instrument :</b></p>
-            <ul style="margin-top:8px;padding-left:20px">
-              <li>Type (chèque ou traite)</li>
-              <li>Banque</li>
-              <li>Numéro</li>
-              <li>Date d'échéance</li>
-              <li>Titulaire</li>
-              <li>Montant</li>
-            </ul>
-            <div class="notice" style="margin-top:12px">💡 Le total du paiement = somme des montants de tous les instruments.</div>
+          <div class="notice warn">
+            ⚠️ <b>Intégration PayPal</b> : Configurez vos clés API dans Paramètres pour activer les paiements en ligne.
           </div>
+        </section>
 
-          <div class="card" style="margin-top:16px">
-            <h4 style="margin-bottom:12px;color:var(--primary-dark);">🔍 Filtres & Recherche</h4>
+        <section id="cloture">
+          <h3>🔒 Clôture Caisse</h3>
+          <p class="lead">Réconciliation quotidienne automatique des encaissements</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Clôture</h4>
             <ul class="check">
-              <li><b>Par type</b> : Ventes ou Achats</li>
-              <li><b>Par nom</b> : Client ou fournisseur</li>
-              <li><b>Par période</b> : Date de début et fin (sur dates paiements)</li>
-              <li><b>Par mode</b> : Espèces, Chèques, Traites ou tous</li>
-              <li><b>Par statut</b> : Payés, Avec solde ou tous</li>
-              <li><b>Impression</b> : État filtré complet avec récapitulatifs</li>
+              <li><b>Synthèse quotidienne</b> : Tous encaissements de la journée</li>
+              <li><b>Par mode</b> : Espèces, Chèques, Virements séparés</li>
+              <li><b>Comptage physique</b> : Saisie caisse réelle</li>
+              <li><b>Écarts</b> : Calcul automatique différence théorique/réel</li>
+              <li><b>Historique</b> : Toutes les clôtures passées</li>
+              <li><b>Export</b> : Rapport PDF quotidien</li>
             </ul>
           </div>
 
-          <div class="notice warn" style="margin-top:16px">
-            ⚠️ <b>Important :</b> Toute modification ou suppression de paiement recalcule automatiquement :
-            <ul style="margin-top:8px;padding-left:20px">
-              <li>Le montant total payé du document</li>
-              <li>Le solde restant</li>
-              <li>Le statut (Impayé / Partiel / Payé)</li>
+          <details open>
+            <summary>📊 Effectuer une Clôture</summary>
+            <div class="step">Menu <b>Clôture Caisse</b> en fin de journée</div>
+            <div class="step">Le système affiche : CA total, par mode de paiement</div>
+            <div class="step">Saisissez le <b>montant réel</b> en caisse</div>
+            <div class="step">Vérifiez les écarts (affiché en rouge/vert)</div>
+            <div class="step">Ajoutez un commentaire si écart significatif</div>
+            <div class="step"><b>Valider</b> → Clôture enregistrée, rapport PDF</div>
+          </details>
+
+          <div class="notice success">
+            ✅ <b>Contrôle automatique</b> : Le système détecte automatiquement les incohérences et vous alerte.
+          </div>
+        </section>
+
+        <section id="charges">
+          <h3>💸 Gestion Charges <span class="feature-badge new">Nouveau</span></h3>
+          <p class="lead">Suivi complet des charges personnels et frais généraux</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Types de Charges</h4>
+            <ul class="check">
+              <li><b>Charges Personnels</b> : Salaires, cotisations sociales, primes</li>
+              <li><b>Charges Diverses</b> : Loyer, électricité, téléphone, fournitures</li>
+              <li><b>Récurrence</b> : Charges mensuelles, trimestrielles, annuelles</li>
+              <li><b>Catégorisation</b> : Classification personnalisable</li>
+              <li><b>Statistiques</b> : Évolution charges par période</li>
+              <li><b>Budget</b> : Suivi vs budget prévisionnel</li>
             </ul>
+          </div>
+
+          <details open>
+            <summary>➕ Ajouter une Charge</summary>
+            <div class="step">Menu <b>Charges Personnels</b> ou <b>Charges Divers</b></div>
+            <div class="step">Cliquez sur <b>Nouvelle Charge</b></div>
+            <div class="step">Renseignez : Type, Montant, Date, Catégorie</div>
+            <div class="step">Option : Définir comme récurrente</div>
+            <div class="step">Joindre justificatif (optionnel)</div>
+            <div class="step">Enregistrez → Impact sur la rentabilité</div>
+          </details>
+
+          <div class="notice">
+            💡 <b>Analyse rentabilité</b> : Les charges sont automatiquement prises en compte dans les calculs de marge nette.
+          </div>
+        </section>
+
+        <section id="analytics">
+          <h3>📈 Analytics & Statistiques <span class="feature-badge new">Avancé</span></h3>
+          <p class="lead">Tableaux de bord interactifs et graphiques temps réel</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Analyses Disponibles</h4>
+            <ul class="check">
+              <li><b>Ventes</b> : Évolution CA par jour/mois/année (Recharts)</li>
+              <li><b>Top Produits</b> : Classement bestsellers</li>
+              <li><b>Marge</b> : Analyse rentabilité par produit/catégorie</li>
+              <li><b>Clients</b> : Segmentation et comportement d'achat</li>
+              <li><b>Stock</b> : Rotation, valorisation, ruptures</li>
+              <li><b>Tendances</b> : Prévisions basées sur historique</li>
+              <li><b>Export</b> : Tous graphiques en PDF/Excel</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>📊 Accéder aux Analytics</summary>
+            <div class="step">Menu <b>Analytics</b> (icône graphique)</div>
+            <div class="step">Sélectionnez la période d'analyse</div>
+            <div class="step">Choisissez le type de graphique souhaité</div>
+            <div class="step">Interagissez : Zoom, filtres, détails au survol</div>
+            <div class="step">Exportez si besoin (bouton Export)</div>
+          </details>
+
+          <div class="notice success">
+            ✅ <b>Graphiques interactifs</b> : Utilise Recharts pour des visualisations modernes et responsives.
+          </div>
+        </section>
+
+        <section id="catalogue">
+          <h3>📚 Catalogue Médicaments <span class="feature-badge new">Partagé</span></h3>
+          <p class="lead">Base de données centralisée des médicaments</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Catalogue</h4>
+            <ul class="check">
+              <li><b>Base partagée</b> : Catalogue commun toutes pharmacies</li>
+              <li><b>Recherche rapide</b> : Par nom, DCI, laboratoire</li>
+              <li><b>Informations complètes</b> : Prix, forme, dosage, PPV, PPH</li>
+              <li><b>Codes-barres</b> : Génération automatique EAN13</li>
+              <li><b>Mise à jour</b> : Synchronisation automatique</li>
+              <li><b>Ajout produits</b> : Contribution communautaire</li>
+            </ul>
+          </div>
+
+          <details open>
+            <summary>🔍 Rechercher un Médicament</summary>
+            <div class="step">Menu <b>Catalogue</b></div>
+            <div class="step">Utilisez la barre de recherche</div>
+            <div class="step">Filtrez par catégorie ou laboratoire</div>
+            <div class="step">Consultez la fiche complète</div>
+            <div class="step">Option : Ajouter à votre stock</div>
+          </details>
+
+          <div class="notice">
+            💡 <b>Catalogue collaboratif</b> : Les nouveaux produits ajoutés sont disponibles pour toutes les pharmacies du réseau.
           </div>
         </section>
 
         <section id="backup">
-          <h3>☁️ Sauvegardes Automatiques</h3>
-          <p class="lead">Export JSON complet, import contrôlé avec prévisualisation et validation.</p>
+          <h3>💾 Sauvegarde & Import <span class="feature-badge new">Amélioré</span></h3>
+          <p class="lead">Export complet de vos données et restauration en un clic</p>
+          
+          <div class="card">
+            <h4 style="margin-bottom:12px;color:var(--primary);">🎯 Fonctionnalités Backup</h4>
+            <ul class="check">
+              <li><b>Export complet</b> : Toutes collections Firestore en JSON</li>
+              <li><b>Sélectif</b> : Choisir collections à exporter</li>
+              <li><b>Import</b> : Restauration complète ou fusion</li>
+              <li><b>Validation</b> : Aperçu avant import</li>
+              <li><b>Mode remplacement</b> : Écrase données existantes</li>
+              <li><b>Mode fusion</b> : Conserve données + ajoute nouvelles</li>
+              <li><b>Historique</b> : Liste des sauvegardes effectuées</li>
+            </ul>
+          </div>
+
           <details open>
-            <summary>💾 Procédure recommandée</summary>
-            <div class="step">Menu Sauvegardes → <b>Créer une sauvegarde</b> (format .json)</div>
-            <div class="step">Stockez sur clé USB, cloud ou serveur local</div>
-            <div class="step">Import : <b>prévisualisez</b> → choisir remplacement ou fusion</div>
+            <summary>📥 Exporter les Données</summary>
+            <div class="step">Menu <b>Sauvegarde</b> → Onglet <b>Export</b></div>
+            <div class="step">Sélectionnez les collections à exporter (ou tout)</div>
+            <div class="step">Cliquez sur <b>Télécharger Sauvegarde JSON</b></div>
+            <div class="step">Fichier téléchargé : <code>backup-YYYY-MM-DD.json</code></div>
+            <div class="step">Conservez ce fichier en lieu sûr</div>
+          </details>
+
+          <details>
+            <summary>📤 Importer une Sauvegarde</summary>
+            <div class="step">Menu <b>Sauvegarde</b> → Onglet <b>Import</b></div>
+            <div class="step">Sélectionnez votre fichier JSON de backup</div>
+            <div class="step">Prévisualisation : collections et nombre de documents</div>
+            <div class="step">Choisissez : <b>Remplacement</b> ou <b>Fusion</b></div>
+            <div class="step">Confirmez → Import : prévisualisez → choisir remplacement ou fusion</div>
           </details>
           <div class="notice danger">⚠️ <b>Mode remplacement</b> : supprime toutes les données existantes avant l'import. Utilisez avec précaution.</div>
         </section>
@@ -1184,6 +1123,10 @@ initializeFirestore(app, {
           <details>
             <summary>🔔 Alertes Stock</summary>
             <p>Définissez un seuil global, configurez les alertes péremption (ex: 30 jours), numérotation automatique des lots.</p>
+          </details>
+          <details>
+            <summary>🏢 Informations Société</summary>
+            <p>Configurez : Nom officine, ICE, IF, RC, TVA, Adresse, Téléphone, Email pour les documents officiels.</p>
           </details>
         </section>
 
@@ -1239,6 +1182,10 @@ initializeFirestore(app, {
             <summary>📱 Message WhatsApp ne part pas</summary>
             <p>Vérifiez que le numéro de téléphone est au format international (+212...). Le message s'ouvre dans WhatsApp, vous devez cliquer sur <b>Envoyer</b>.</p>
           </details>
+          <details>
+            <summary>🔧 Comment mettre à jour l'application ?</summary>
+            <p>L'application se met à jour automatiquement. Rafraîchissez simplement votre navigateur (Ctrl+F5) pour charger la dernière version.</p>
+          </details>
         </section>
 
         <section id="support">
@@ -1252,6 +1199,8 @@ initializeFirestore(app, {
           <p style="margin-top:16px;color:var(--muted);font-size:14px;">
             📞 <span id="waNumber"></span>
           </p>
+          
+          
         </section>
 
       </div>
@@ -1262,7 +1211,10 @@ initializeFirestore(app, {
         </div>
         © <span id="year"></span> <b>Pharma Gestion</b> – Guide Utilisateur Professionnel
         <br>
-        <small style="margin-top:8px;display:block">Tous droits réservés • Version 3.0 • Mise à jour complète</small>
+        <small style="margin-top:8px;display:block">Tous droits réservés • Version 4.0 • Application React Moderne</small>
+        <small style="margin-top:4px;display:block">
+          
+        </small>
       </footer>
     </main>
   </div>
